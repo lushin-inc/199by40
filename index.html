@@ -107,6 +107,7 @@ h1.page{font-size:19px;font-weight:600;color:var(--soft);margin:2px 0 26px}
 .g-lifts{background:linear-gradient(155deg,#2563eb,#3b82f6)}
 .g-calendar{background:linear-gradient(155deg,#334155,#64748b)}
 .g-checkin{background:linear-gradient(155deg,#059669,#10b981)}
+.g-goals{background:linear-gradient(155deg,#0369a1,#0ea5e9)}
 .g-week{background:linear-gradient(155deg,#0d9488,#14b8a6)}
 .g-cards{background:linear-gradient(155deg,#047857,#10b981)}
 .g-prep{background:linear-gradient(155deg,#059669,#34d399)}
@@ -144,6 +145,16 @@ ul.plain b{font-weight:700}
 .qty{color:var(--soft);font-size:13px;display:block}
 .copybtn{background:var(--panel2);border:1px solid var(--line);color:var(--soft);border-radius:10px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;margin-top:4px}
 .copybtn.ok{color:#059669;border-color:#059669}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{background:var(--panel2);border:1px solid var(--line);color:var(--soft);border-radius:999px;padding:8px 15px;font-size:13px;font-weight:600;cursor:pointer}
+.chip.on{background:#0369a1;border-color:#0369a1;color:#fff}
+.gsearch{width:100%;background:var(--input);border:1px solid var(--line);border-radius:12px;padding:12px 15px;color:var(--text);font-size:15px;margin-bottom:14px}
+.gsearch:focus{outline:2px solid #0ea5e9;outline-offset:-1px;border-color:transparent}
+.gtable td{font-size:13.5px}
+.gtable .wkno{color:var(--faint);font-weight:700;font-variant-numeric:tabular-nums}
+.gtable .tgt{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.gtable tr.now td{background:rgba(14,165,233,.08)}
+.gtable tr.now .wkno{color:#0ea5e9}
 .grocehead{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin:18px 0 2px}
 
 @media(max-width:600px){
@@ -170,7 +181,7 @@ ul.plain b{font-weight:700}
   <a class="sub" href="#full/desserts" data-h="full/desserts" onclick="navClose()">Dessert rotation</a>
   <a class="sub" href="#full/lifts" data-h="full/lifts" onclick="navClose()">Lift split</a>
   <a class="sub" href="#full/calendar" data-h="full/calendar" onclick="navClose()">Calendar</a>
-  <a class="sub" href="#full/checkin" data-h="full/checkin" onclick="navClose()">Friday check-in</a>
+  <a class="sub" href="#full/checkin" data-h="full/checkin" onclick="navClose()">Monday check-in</a>
   <a href="#week1" class="c-wk hub" data-h="week1" onclick="navClose()">Week 1</a>
   <a class="sub" href="#week1/week" data-h="week1/week" onclick="navClose()">The week</a>
   <a class="sub" href="#week1/cards" data-h="week1/cards" onclick="navClose()">Lift cards</a>
@@ -223,7 +234,8 @@ ul.plain b{font-weight:700}
     <a class="gt g-desserts" href="#full/desserts"><svg viewBox="0 0 24 24"><path d="M6 10a6 6 0 0 1 12 0v1H6zM7 11l1.5 9h7L17 11"/></svg><div class="t">Dessert rotation</div></a>
     <a class="gt g-lifts" href="#full/lifts"><svg viewBox="0 0 24 24"><path d="M2 12h3M19 12h3M7 8v8M17 8v8M7 12h10"/></svg><div class="t">Lift split</div></a>
     <a class="gt g-calendar" href="#full/calendar"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><div class="t">Calendar</div></a>
-    <a class="gt g-checkin" href="#full/checkin"><svg viewBox="0 0 24 24"><path d="M4 12l5 5 11-11"/></svg><div class="t">Friday check-in</div></a>
+    <a class="gt g-goals" href="#full/goals"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><div class="t">Weekly goals</div></a>
+    <a class="gt g-checkin" href="#full/checkin"><svg viewBox="0 0 24 24"><path d="M4 12l5 5 11-11"/></svg><div class="t">Monday check-in</div></a>
   </div>
 </div>
 
@@ -235,7 +247,7 @@ ul.plain b{font-weight:700}
     <ul class="plain">
       <li><b>2,000&ndash;2,200 calories</b><span class="sub">A real deficit at your size &mdash; nearly double the winter crash-diet intake</span></li>
       <li><b>185g+ protein</b><span class="sub">This is what makes the loss come from fat instead of muscle</span></li>
-      <li><b>Floor: never under 1,800</b><span class="sub">Two days under the floor in a week = flag it at Friday check-in</span></li>
+      <li><b>Floor: never under 1,800</b><span class="sub">Two days under the floor in a week = flag it at Monday check-in</span></li>
       <li><b>Elliptical: 45 min max per session, 4 sessions max per week</b><span class="sub">Lifting first &mdash; elliptical after or on off days</span></li>
       <li><b>Weigh every morning</b><span class="sub">Judge only the 7-day average. Single days mean nothing.</span></li>
     </ul>
@@ -262,7 +274,7 @@ ul.plain b{font-weight:700}
   <div class="card">
     <div class="lead" style="margin-top:0">The one allowed change</div>
     <ul class="plain">
-      <li><b>The menu changes as a set, at a Friday check-in</b><span class="sub">Swap Cookie Dough jars for Oreo jars for the whole next week, or the casserole for a chicken batch. Same-every-day stays true; which same-every-day can evolve weekly.</span></li>
+      <li><b>The menu changes as a set, at a Monday check-in</b><span class="sub">Swap Cookie Dough jars for Oreo jars for the whole next week, or the casserole for a chicken batch. Same-every-day stays true; which same-every-day can evolve weekly.</span></li>
       <li><b>Sunday prep is two items</b><span class="sub">One double-batch casserole into 5 containers, 5 identical oat jars. Pudding is made fresh each night in 5 minutes.</span></li>
     </ul>
   </div>
@@ -306,7 +318,7 @@ ul.plain b{font-weight:700}
       <tr><td>Oreo Lovers Protein Oatmeal &#9733;4</td><td>FDL p21</td><td class="num">468</td><td class="num">34g</td></tr>
       <tr><td>XL Protein Oatmeal Cream Pie &#9733;4</td><td>FDL p195</td><td class="num">280</td><td class="num">33g</td></tr>
     </table>
-    <div class="note">The weekday jar is one of these, five identical, made Sunday. Swap which one at a Friday check-in. Hot bowls belong to weekend mornings. Oatmeal Creme Pies counts as breakfast + dessert in one.</div>
+    <div class="note">The weekday jar is one of these, five identical, made Sunday. Swap which one at a Monday check-in. Hot bowls belong to weekend mornings. Oatmeal Creme Pies counts as breakfast + dessert in one.</div>
   </div>
   <div class="next"><a href="#full/desserts">Dessert rotation &#8250;</a></div>
 </div>
@@ -397,22 +409,61 @@ ul.plain b{font-weight:700}
     <div class="day"><div class="d">Oct 29 &middot; Nov 3</div><div class="t">Fall league + 40</div>
       <div class="x">Week 1 of men's league with 14 weeks of lifting behind you. Turn 40 under 199 with the shoulders and arms you actually trained.</div></div>
   </div>
-  <div class="next"><a href="#full/checkin">Friday check-in &#8250;</a></div>
+  <div class="next"><a href="#full/goals">Weekly goals &#8250;</a></div>
 </div>
 
 <!-- FULL / CHECKIN -->
 <div id="v-full-checkin" class="view">
   <a class="back" href="#full">&#8249; Full Playbook</a>
-  <div class="phead g-checkin"><div class="who">Full Playbook</div><div class="what">Friday check-in</div></div>
+  <div class="phead g-checkin"><div class="who">Full Playbook</div><div class="what">Monday check-in</div></div>
   <div class="card">
     <ul class="plain">
-      <li><b>Report four things:</b> 7-day average weight &middot; lifts completed (target 3) &middot; protein average &middot; one flag if anything's slipping</li>
+      <li><b>Every Monday, report four things from last week:</b> 7-day average weight &middot; lifts completed (target 3) &middot; protein average &middot; one flag if anything's slipping</li>
       <li><b>Two stalled weeks = we adjust together</b><span class="sub">You don't slash calories solo. That's the pattern interrupt.</span></li>
       <li><b>Under the 1,800 floor twice in a week = same rule</b><span class="sub">Under-eating is the old engine. Flag it, don't ride it.</span></li>
-      <li><b>Menu swaps happen here</b><span class="sub">Next week's jar flavor or lunch batch changes as a set, decided at check-in.</span></li>
+      <li><b>Menu swaps happen here</b><span class="sub">Next week's jar flavor or lunch batch changes as a set, decided at the Monday check-in.</span></li>
     </ul>
   </div>
   <div class="next"><a href="#week1">Week 1 &#8250;</a></div>
+</div>
+
+
+<!-- FULL / GOALS -->
+<div id="v-full-goals" class="view">
+  <a class="back" href="#full">&#8249; Full Playbook</a>
+  <div class="phead g-goals"><div class="who">Full Playbook</div><div class="what">Weekly goals</div></div>
+  <div class="card">
+    <input class="gsearch" id="gq" placeholder="Search weeks &mdash; try Jamaica, legs, retreat" oninput="filterGoals()">
+    <div class="chips" id="gchips">
+      <button class="chip on" data-p="All" onclick="chipGoals(this)">All</button>
+      <button class="chip" data-p="Reset" onclick="chipGoals(this)">Reset</button>
+      <button class="chip" data-p="Cut Engine" onclick="chipGoals(this)">Cut Engine</button>
+      <button class="chip" data-p="Jamaica" onclick="chipGoals(this)">Jamaica</button>
+      <button class="chip" data-p="Land the Plane" onclick="chipGoals(this)">Land the Plane</button>
+      <button class="chip" data-p="Final Stretch" onclick="chipGoals(this)">Final Stretch</button>
+    </div>
+    <table class="gtable" id="gtable">
+      <tr><th>Wk</th><th>Dates</th><th>Phase</th><th>Target avg</th><th>Training</th></tr>
+      <tr data-phase="Reset" data-start="2026-07-20"><td class="wkno">1</td><td class="num">Jul 20 &ndash; 26</td><td>Reset</td><td class="tgt">208.6</td><td>Lifts A/B/C &mdash; calibration week<span class="sub">First lifts. Find working weights, log everything.</span></td></tr>
+      <tr data-phase="Reset" data-start="2026-07-27"><td class="wkno">2</td><td class="num">Jul 27 &ndash; Aug 2</td><td>Reset</td><td class="tgt">207.4</td><td>A/B/C &mdash; progression starts<span class="sub">PLL in Ohio Aug 1&ndash;2. Protein first, back Monday.</span></td></tr>
+      <tr data-phase="Reset" data-start="2026-08-03"><td class="wkno">3</td><td class="num">Aug 3 &ndash; 9</td><td>Reset</td><td class="tgt">206.2</td><td>A/B/C<span class="sub">Phase 1 target lands: ~205&ndash;206.</span></td></tr>
+      <tr data-phase="Cut Engine" data-start="2026-08-10"><td class="wkno">4</td><td class="num">Aug 10 &ndash; 16</td><td>Cut Engine</td><td class="tgt">205.0</td><td>A/B/C &mdash; Month 1 closes<span class="sub">School starts Aug 10 &mdash; anchor lifts to the routine.</span></td></tr>
+      <tr data-phase="Cut Engine" data-start="2026-08-17"><td class="wkno">5</td><td class="num">Aug 17 &ndash; 23</td><td>Cut Engine</td><td class="tgt">203.8</td><td>Month 2: back work joins B and C<span class="sub">Lat Pulldown, Seated Cable Row, Face Pulls.</span></td></tr>
+      <tr data-phase="Cut Engine" data-start="2026-08-24"><td class="wkno">6</td><td class="num">Aug 24 &ndash; 30</td><td>Cut Engine</td><td class="tgt">202.6</td><td>A/B/C + back</td></tr>
+      <tr data-phase="Cut Engine" data-start="2026-08-31"><td class="wkno">7</td><td class="num">Aug 31 &ndash; Sep 6</td><td>Cut Engine</td><td class="tgt">201.4</td><td>A/B/C + back<span class="sub">Halfway. Menu swap allowed if boredom creeps.</span></td></tr>
+      <tr data-phase="Cut Engine" data-start="2026-09-07"><td class="wkno">8</td><td class="num">Sep 7 &ndash; 13</td><td>Cut Engine</td><td class="tgt">200.2</td><td>A/B/C + back<span class="sub">One good week from the line.</span></td></tr>
+      <tr data-phase="Cut Engine" data-start="2026-09-14"><td class="wkno">9</td><td class="num">Sep 14 &ndash; 20</td><td>Cut Engine</td><td class="tgt">199.0</td><td>Month 3: legs micro-dose begins<span class="sub">Cross 199 this week. Walking Lunges + Calf Raises land.</span></td></tr>
+      <tr data-phase="Cut Engine" data-start="2026-09-21"><td class="wkno">10</td><td class="num">Sep 21 &ndash; 27</td><td>Cut Engine</td><td class="tgt">198.0</td><td>A/B/C + back + legs<span class="sub">Buffer week. Board the plane at 197&ndash;198.</span></td></tr>
+      <tr data-phase="Jamaica" data-start="2026-09-28"><td class="wkno">11</td><td class="num">Sep 28 &ndash; Oct 4</td><td>Jamaica</td><td class="tgt">&mdash;</td><td>Walk a lot<span class="sub">Vacation fully. Expect +3&ndash;4 water. Ignore the scale.</span></td></tr>
+      <tr data-phase="Land the Plane" data-start="2026-10-05"><td class="wkno">12</td><td class="num">Oct 5 &ndash; 11</td><td>Land the Plane</td><td class="tgt">198.5</td><td>A/B/C + back + legs<span class="sub">Bounce clears by ~Oct 10.</span></td></tr>
+      <tr data-phase="Land the Plane" data-start="2026-10-12"><td class="wkno">13</td><td class="num">Oct 12 &ndash; 18</td><td>Land the Plane</td><td class="tgt">197.5</td><td>A/B/C + back + legs<span class="sub">Anniversary Oct 12 is a planned meal. Kids on fall break.</span></td></tr>
+      <tr data-phase="Land the Plane" data-start="2026-10-19"><td class="wkno">14</td><td class="num">Oct 19 &ndash; 25</td><td>Land the Plane</td><td class="tgt">197.0</td><td>A/B/C + back + legs<span class="sub">Lushin Retreat Oct 22 &mdash; walk in under 199. Promise kept.</span></td></tr>
+      <tr data-phase="Final Stretch" data-start="2026-10-26"><td class="wkno">15</td><td class="num">Oct 26 &ndash; Nov 1</td><td>Final Stretch</td><td class="tgt">196.5</td><td>Lifts + league<span class="sub">Fall league week 1 on Oct 29.</span></td></tr>
+      <tr data-phase="Final Stretch" data-start="2026-11-02"><td class="wkno">16</td><td class="num">Nov 2 &ndash; 8</td><td>Final Stretch</td><td class="tgt">&lt;199</td><td>Lifts + league<span class="sub">40th on Nov 3 &mdash; under 199, built, done.</span></td></tr>
+    </table>
+    <div class="note">Targets are the Sunday 7-day average at ~1.2 lbs per week. Ahead of target changes nothing; two weeks behind = we adjust together at the Monday check-in. Your current week is highlighted.</div>
+  </div>
+  <div class="next"><a href="#full/checkin">Monday check-in &#8250;</a></div>
 </div>
 
 <!-- WEEK1 HUB -->
@@ -436,8 +487,9 @@ ul.plain b{font-weight:700}
     <div class="day"><div class="d">Tue Jul 21</div><div class="t">Off or elliptical</div><div class="x">30&ndash;45 min if you want it. Walking counts too.</div></div>
     <div class="day"><div class="d">Wed Jul 22</div><div class="t">Day B &mdash; Shoulders + Triceps</div><div class="x">Optional elliptical after.</div></div>
     <div class="day"><div class="d">Thu Jul 23</div><div class="t">Off</div><div class="x">Full rest or a walk.</div></div>
-    <div class="day"><div class="d">Fri Jul 24</div><div class="t">Day C &mdash; Arms + Pump, then check-in</div><div class="x">Send: 7-day average &middot; 3/3 lifts &middot; protein average &middot; any flag.</div></div>
+    <div class="day"><div class="d">Fri Jul 24</div><div class="t">Day C &mdash; Arms + Pump</div><div class="x">Optional elliptical after.</div></div>
     <div class="day"><div class="d">Sat Jul 25</div><div class="t">Off or elliptical</div><div class="x">Griddle-slot breakfast if you want the waffles out.</div></div>
+    <div class="day"><div class="d">Mon Jul 27</div><div class="t">Check-in #1</div><div class="x">Send: last week's 7-day average &middot; 3/3 lifts &middot; protein average &middot; any flag. Then Day A.</div></div>
   </div>
   <div class="next"><a href="#week1/cards">Lift cards &#8250;</a></div>
 </div>
@@ -586,7 +638,7 @@ function toggleTheme(){
 function navOpen(){ document.getElementById('snav').classList.add('on'); document.getElementById('scrim').classList.add('on'); }
 function navClose(){ document.getElementById('snav').classList.remove('on'); document.getElementById('scrim').classList.remove('on'); }
 
-var VIEWS = ['home','full','full/targets','full/menu','full/weekends','full/oats','full/desserts','full/lifts','full/calendar','full/checkin','week1','week1/week','week1/cards','week1/prep','week1/grocery'];
+var VIEWS = ['home','full','full/targets','full/menu','full/weekends','full/oats','full/desserts','full/lifts','full/calendar','full/goals','full/checkin','week1','week1/week','week1/cards','week1/prep','week1/grocery'];
 function route(){
   var h = location.hash.replace('#','') || 'home';
   if(VIEWS.indexOf(h) < 0) h = 'home';
@@ -630,6 +682,29 @@ document.querySelectorAll('.chk input').forEach(function(cb){
   });
 });
 
+var gPhase = 'All';
+function chipGoals(btn){
+  gPhase = btn.getAttribute('data-p');
+  document.querySelectorAll('#gchips .chip').forEach(function(c){ c.classList.toggle('on', c===btn); });
+  filterGoals();
+}
+function filterGoals(){
+  var q = (document.getElementById('gq').value || '').toLowerCase();
+  document.querySelectorAll('#gtable tr[data-phase]').forEach(function(tr){
+    var okP = gPhase==='All' || tr.getAttribute('data-phase')===gPhase;
+    var okQ = !q || tr.textContent.toLowerCase().indexOf(q) >= 0;
+    tr.style.display = (okP && okQ) ? '' : 'none';
+  });
+}
+(function(){
+  var today = new Date();
+  var rows = document.querySelectorAll('#gtable tr[data-phase]');
+  for(var i=0;i<rows.length;i++){
+    var start = new Date(rows[i].getAttribute('data-start') + 'T00:00:00');
+    var end = new Date(start); end.setDate(end.getDate()+7);
+    if(today >= start && today < end){ rows[i].classList.add('now'); break; }
+  }
+})();
 function copyList(btn){
   var lines = [];
   document.querySelectorAll('#v-week1-grocery .grocehead').forEach(function(h){
