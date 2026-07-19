@@ -4,10 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Road to 199</title>
-<!-- EDIT THIS ONE LINE after uploading: replace with your real GitHub Pages URL, keep /og.png at the end -->
-<meta property="og:image" content="https://YOUR-USERNAME.github.io/road-to-199/og.png">
+<meta property="og:image" content="https://lushin-inc.github.io/199by40/og.png">
+<meta property="og:url" content="https://lushin-inc.github.io/199by40/">
+<meta property="og:site_name" content="Road to 199">
 <meta property="og:title" content="Road to 199">
-<meta property="og:description" content="Full playbook + Week 1. July 18 - November 3.">
+<meta property="og:description" content="The full playbook and Week 1 plan: food, lifts, weekly goals, and key dates from July 18 to November 3.">
+<meta name="description" content="The full playbook and Week 1 plan: food, lifts, weekly goals, and key dates from July 18 to November 3.">
 <meta property="og:type" content="website">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -145,6 +147,19 @@ ul.plain b{font-weight:700}
 .qty{color:var(--soft);font-size:13px;display:block}
 .copybtn{background:var(--panel2);border:1px solid var(--line);color:var(--soft);border-radius:10px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;margin-top:4px}
 .copybtn.ok{color:#059669;border-color:#059669}
+.calgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.mon{background:var(--panel2);border-radius:14px;overflow:hidden}
+.mon .mh{color:#fff;font-size:13px;font-weight:800;letter-spacing:.04em;text-align:center;padding:8px 4px;text-transform:uppercase}
+.mon table{border-collapse:collapse;width:100%}
+.mon th{font-size:9.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.04em;padding:6px 0 4px;text-align:center;border-bottom:none;font-weight:700}
+.mon td{border-bottom:none;padding:1.5px;text-align:center;vertical-align:top;width:14.28%}
+.mon .dc{border-radius:8px;padding:4px 1px 3px;min-height:30px;font-size:11.5px;font-variant-numeric:tabular-nums;color:var(--text)}
+.mon .dim{color:var(--faint);opacity:.55}
+.mon .ev{color:#fff;font-weight:700}
+.mon .ev .el{display:block;font-size:7.5px;font-weight:700;line-height:1.15;letter-spacing:.01em;opacity:.95;margin-top:1px}
+.callegend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:14px}
+.callegend span{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--soft)}
+.callegend i{width:12px;height:12px;border-radius:4px;display:inline-block}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
 .chip{background:var(--panel2);border:1px solid var(--line);color:var(--soft);border-radius:999px;padding:8px 15px;font-size:13px;font-weight:600;cursor:pointer}
 .chip.on{background:#0369a1;border-color:#0369a1;color:#fff}
@@ -385,6 +400,10 @@ ul.plain b{font-weight:700}
 <div id="v-full-calendar" class="view">
   <a class="back" href="#full">&#8249; Full Playbook</a>
   <div class="phead g-calendar"><div class="who">Full Playbook</div><div class="what">Calendar &mdash; four phases</div></div>
+  <div class="card">
+    <div class="calgrid" id="keycal"></div>
+    <div class="callegend" id="keyleg"></div>
+  </div>
   <div class="card">
     <div class="day"><div class="d">Phase 1 &middot; Jul 18 &ndash; Aug 9</div><div class="t">Reset</div>
       <div class="x">Logging back on daily. Lift split starts Mon Jul 20. Meal prep Sundays. PLL weekend Aug 1&ndash;2: protein first, no tracking guilt, back Monday. Target: ~205 by Aug 9.</div></div>
@@ -705,6 +724,59 @@ function filterGoals(){
     var end = new Date(start); end.setDate(end.getDate()+7);
     if(today >= start && today < end){ rows[i].classList.add('now'); break; }
   }
+})();
+
+// Key-dates calendar. Add future events here: {from:'YYYY-MM-DD', to:'YYYY-MM-DD', label:'Short', name:'Legend name', color:'#hex'}
+var KEY_EVENTS = [
+  {from:'2026-08-01', to:'2026-08-02', label:'PLL',     name:'Aug 1\u20132 \u2014 PLL in OH',            color:'#2563eb'},
+  {from:'2026-08-10', to:'2026-08-10', label:'School',  name:'Aug 10 \u2014 First Day of School',        color:'#059669'},
+  {from:'2026-09-30', to:'2026-10-03', label:'Jamaica', name:'Sep 30 \u2013 Oct 3 \u2014 Jamaica',      color:'#ea770b'},
+  {from:'2026-10-12', to:'2026-10-12', label:'Anniv',   name:'Oct 12 \u2014 Anniversary',                color:'#db2777'},
+  {from:'2026-10-13', to:'2026-10-17', label:'Break',   name:'Oct 12\u201317 \u2014 Fall Break',        color:'#7c3aed'},
+  {from:'2026-10-22', to:'2026-10-22', label:'Retreat', name:'Oct 22 \u2014 Lushin Retreat',             color:'#dc2626'},
+  {from:'2026-11-03', to:'2026-11-03', label:'40th',    name:'Nov 3 \u2014 40th Birthday',               color:'#0d9488'}
+];
+var CAL_MONTHS = [
+  {y:2026,m:6,name:'July',hc:'#1e3a8a'},{y:2026,m:7,name:'August',hc:'#2563eb'},
+  {y:2026,m:8,name:'September',hc:'#0d9488'},{y:2026,m:9,name:'October',hc:'#ea770b'},
+  {y:2026,m:10,name:'November',hc:'#6d28d9'}
+];
+(function(){
+  var host = document.getElementById('keycal');
+  if(!host) return;
+  var rs = new Date('2026-07-19T00:00:00'), re = new Date('2026-11-03T00:00:00');
+  function evFor(d){
+    for(var i=0;i<KEY_EVENTS.length;i++){
+      var e = KEY_EVENTS[i];
+      if(d >= new Date(e.from+'T00:00:00') && d <= new Date(e.to+'T00:00:00')) return e;
+    }
+    return null;
+  }
+  var dows = ['S','M','T','W','T','F','S'];
+  CAL_MONTHS.forEach(function(mo){
+    var first = new Date(mo.y, mo.m, 1);
+    var days = new Date(mo.y, mo.m+1, 0).getDate();
+    var h = '<div class="mon"><div class="mh" style="background:'+mo.hc+'">'+mo.name+' 2026</div><table><tr>';
+    dows.forEach(function(d){ h += '<th>'+d+'</th>'; });
+    h += '</tr><tr>';
+    for(var b=0;b<first.getDay();b++) h += '<td></td>';
+    var col = first.getDay();
+    for(var day=1;day<=days;day++){
+      var d = new Date(mo.y, mo.m, day);
+      var e = evFor(d);
+      var dim = (d < rs || d > re) ? ' dim' : '';
+      if(e) h += '<td><div class="dc ev" style="background:'+e.color+'">'+day+'<span class="el">'+e.label+'</span></div></td>';
+      else  h += '<td><div class="dc'+dim+'">'+day+'</div></td>';
+      col++;
+      if(col===7 && day<days){ h += '</tr><tr>'; col=0; }
+    }
+    h += '</tr></table></div>';
+    host.insertAdjacentHTML('beforeend', h);
+  });
+  var leg = document.getElementById('keyleg');
+  KEY_EVENTS.forEach(function(e){
+    leg.insertAdjacentHTML('beforeend', '<span><i style="background:'+e.color+'"></i>'+e.name+'</span>');
+  });
 })();
 function copyList(btn){
   var lines = [];
