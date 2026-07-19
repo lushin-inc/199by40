@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Road to 199</title>
+<!-- EDIT THIS ONE LINE after uploading: replace with your real GitHub Pages URL, keep /og.png at the end -->
+<meta property="og:image" content="https://YOUR-USERNAME.github.io/road-to-199/og.png">
+<meta property="og:title" content="Road to 199">
+<meta property="og:description" content="Full playbook + Week 1. July 18 - November 3.">
+<meta property="og:type" content="website">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root,[data-theme="light"]{
+  --bg:#f5f6f9;--panel:#ffffff;--panel2:#eef1f6;--text:#1a2233;--soft:#5a6478;--faint:#8b96a8;
+  --line:#e3e8ef;--gold:#a06e0a;--goldbg:rgba(160,110,10,.07);--goldline:rgba(160,110,10,.3);
+  --indigo1:#4f46e5;--indigo2:#7c3aed;--teal1:#0d9488;--teal2:#059669;
+  --shadow:0 2px 12px rgba(20,30,55,.06);
+  --input:#ffffff;
+}
+[data-theme="dark"]{
+  --bg:#0e1420;--panel:#161e2e;--panel2:#1c2638;--text:#e8edf5;--soft:#9aa7bb;--faint:#5f6c82;
+  --line:#243044;--gold:#f5b942;--goldbg:rgba(245,185,66,.06);--goldline:rgba(245,185,66,.35);
+  --shadow:none;
+  --input:#1c2638;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;transition:background .2s,color .2s}
+.wrap{max-width:840px;margin:0 auto;padding:20px 16px 60px}
+a{color:inherit;text-decoration:none}
+.eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:600}
+h1.page{font-size:20px;font-weight:600;color:var(--soft);margin:4px 0 24px}
+
+/* top bar: menu + theme toggle */
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.iconbtn{background:var(--panel);border:1px solid var(--line);border-radius:12px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;color:var(--text);box-shadow:var(--shadow)}
+.iconbtn svg{width:22px;height:22px;stroke:var(--text);fill:none;stroke-width:2;stroke-linecap:round}
+
+/* side nav */
+.scrim{position:fixed;inset:0;background:rgba(10,15,25,.45);opacity:0;pointer-events:none;transition:opacity .2s;z-index:40}
+.scrim.on{opacity:1;pointer-events:auto}
+.snav{position:fixed;top:0;left:0;bottom:0;width:280px;max-width:82vw;background:var(--panel);z-index:50;transform:translateX(-102%);transition:transform .22s ease;padding:22px 16px;display:flex;flex-direction:column;gap:6px;box-shadow:4px 0 24px rgba(10,15,25,.15)}
+.snav.on{transform:translateX(0)}
+.snav .head{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:700;padding:6px 12px 14px}
+.snav a{display:block;padding:15px 14px;border-radius:12px;font-size:16px;font-weight:600;color:var(--text)}
+.snav a.on{color:#fff}
+.snav a.on.n-home{background:linear-gradient(135deg,#334155,#475569)}
+.snav a.on.n-full{background:linear-gradient(135deg,var(--indigo1),var(--indigo2))}
+.snav a.on.n-week1{background:linear-gradient(135deg,var(--teal1),var(--teal2))}
+.snav .grp{margin-top:10px}
+.snav .sub{display:block;padding:10px 14px 10px 26px;font-size:14px;font-weight:500;color:var(--soft);border-radius:10px}
+.snav details{background:none;margin:0}
+.snav details summary{padding:12px 14px;font-size:14px;font-weight:700;color:var(--faint);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.snav details summary::-webkit-details-marker{display:none}
+.snav details summary:after{content:"\203A";font-size:18px;transform:rotate(90deg);transition:transform .2s}
+.snav details[open] summary:after{transform:rotate(-90deg)}
+
+/* progress widget */
+.prog{background:var(--panel);border-radius:16px;padding:20px;margin-bottom:26px;box-shadow:var(--shadow)}
+.prog .nums{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.prog .big{font-size:34px;font-weight:700;letter-spacing:-.02em}
+.prog .lbl{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.bar{height:14px;border-radius:8px;background:var(--panel2);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,var(--teal1),var(--teal2));transition:width .4s}
+.bar.done i{background:linear-gradient(90deg,#f59e0b,#fbbf24)}
+.prog .row{display:flex;gap:10px;margin-top:14px;align-items:center}
+.prog input{flex:1;background:var(--input);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--text);font-size:16px;min-width:0}
+.prog button{background:var(--teal2);border:none;border-radius:10px;padding:12px 20px;color:#fff;font-size:15px;font-weight:600;cursor:pointer}
+.prog .hint{font-size:12px;color:var(--faint);margin-top:8px}
+
+/* chooser tiles */
+.tiles{display:flex;gap:16px}
+.tile{flex:1;border-radius:20px;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;padding:26px;cursor:pointer}
+.tile .who{font-size:15px;font-weight:400;color:rgba(255,255,255,.85);margin-bottom:6px}
+.tile .what{font-size:30px;font-weight:800;color:#fff;line-height:1.15;letter-spacing:-.01em}
+.tile.full{background:linear-gradient(150deg,var(--indigo1),var(--indigo2));box-shadow:0 12px 40px -8px rgba(99,72,237,.4)}
+.tile.wk{background:linear-gradient(150deg,var(--teal1),var(--teal2));box-shadow:0 12px 40px -8px rgba(13,148,136,.4)}
+
+/* section views */
+.viewhead{border-radius:16px;padding:22px;margin-bottom:22px;color:#fff}
+.viewhead.full{background:linear-gradient(150deg,var(--indigo1),var(--indigo2))}
+.viewhead.wk{background:linear-gradient(150deg,var(--teal1),var(--teal2))}
+.viewhead .who{font-size:14px;opacity:.85}
+.viewhead .what{font-size:26px;font-weight:800;letter-spacing:-.01em}
+
+.wrap>div>details, .view details.card{background:var(--panel);border-radius:14px;margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow)}
+details.card summary{list-style:none;cursor:pointer;padding:16px 18px;font-size:17px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+details.card summary::-webkit-details-marker{display:none}
+details.card summary:after{content:"\203A";font-size:22px;color:var(--faint);transform:rotate(90deg);transition:transform .2s}
+details.card[open] summary:after{transform:rotate(-90deg)}
+.inner{padding:0 18px 18px}
+details.callout{border:1px solid var(--goldline);background:var(--goldbg)}
+details.callout summary{color:var(--gold)}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;color:var(--faint);font-size:12px;text-transform:uppercase;letter-spacing:.05em;padding:6px 8px 6px 0;border-bottom:1px solid var(--line)}
+td{padding:9px 8px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.num{white-space:nowrap;color:var(--soft)}
+
+ul.plain{list-style:none}
+ul.plain li{padding:7px 0;border-bottom:1px solid var(--line);font-size:15px}
+ul.plain li:last-child{border-bottom:none}
+ul.plain b{font-weight:700}
+.sub{color:var(--soft);font-size:13px;display:block;margin-top:2px}
+.lead{font-size:15px;font-weight:700;margin:14px 0 6px}
+.note{font-size:13px;color:var(--soft);background:var(--panel2);border-radius:10px;padding:10px 12px;margin-top:12px}
+.flag{font-size:13px;color:var(--gold);background:var(--goldbg);border:1px solid var(--goldline);border-radius:10px;padding:10px 12px;margin-top:12px}
+
+/* day cards */
+.day{background:var(--panel2);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.day .d{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.day .t{font-size:16px;font-weight:700;margin:2px 0 4px}
+.day .x{font-size:14px;color:var(--soft)}
+
+/* lift cards */
+.lift{background:var(--panel2);border-radius:12px;padding:16px;margin-bottom:12px}
+.lift .t{font-size:17px;font-weight:800;margin-bottom:10px}
+
+/* checklists */
+.chk{list-style:none}
+.chk li{display:flex;align-items:flex-start;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.chk li:last-child{border-bottom:none}
+.chk input{width:22px;height:22px;accent-color:var(--teal2);margin-top:1px;flex-shrink:0}
+.chk label{flex:1;cursor:pointer}
+.chk input:checked+label{text-decoration:line-through;color:var(--faint)}
+.qty{color:var(--soft);font-size:13px;display:block}
+.copybtn{background:var(--panel2);border:1px solid var(--line);color:var(--soft);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;margin-top:10px}
+.copybtn.ok{color:var(--teal2);border-color:var(--teal2)}
+.grocehead{font-size:13px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin:16px 0 2px}
+
+@media(max-width:640px){
+  .tiles{flex-direction:column}
+  .tile{min-height:200px}
+  .tile .what{font-size:26px}
+}
+.view{display:none}
+.view.on{display:block}
+</style>
+</head>
+<body>
+
+<div class="scrim" id="scrim" onclick="navClose()"></div>
+<nav class="snav" id="snav">
+  <div class="head">Road to 199</div>
+  <a href="#home" class="n-home" onclick="navClose()">Home</a>
+  <a href="#full" class="n-full" onclick="navClose()">Full Playbook</a>
+  <details>
+    <summary>Full Playbook sections</summary>
+    <a class="sub" href="#full" onclick="navGo('s-targets')">Daily targets</a>
+    <a class="sub" href="#full" onclick="navGo('s-template')">Daily food template</a>
+    <a class="sub" href="#full" onclick="navGo('s-oats')">Oatmeal rotation</a>
+    <a class="sub" href="#full" onclick="navGo('s-dessert')">Dessert rotation</a>
+    <a class="sub" href="#full" onclick="navGo('s-lifts')">Lift split</a>
+    <a class="sub" href="#full" onclick="navGo('s-cal')">Calendar</a>
+    <a class="sub" href="#full" onclick="navGo('s-checkin')">Friday check-in</a>
+  </details>
+  <a href="#week1" class="n-week1" onclick="navClose()">Week 1</a>
+  <details>
+    <summary>Week 1 sections</summary>
+    <a class="sub" href="#week1" onclick="navGo('w-sched')">The week</a>
+    <a class="sub" href="#week1" onclick="navGo('w-lifts')">Lift cards</a>
+    <a class="sub" href="#week1" onclick="navGo('w-prep')">Sunday prep</a>
+    <a class="sub" href="#week1" onclick="navGo('w-groc')">Grocery list</a>
+  </details>
+</nav>
+
+<div class="wrap">
+
+<div class="topbar">
+  <button class="iconbtn" onclick="navOpen()" aria-label="Menu">
+    <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </button>
+  <button class="iconbtn" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme">
+    <svg id="iconMoon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    <svg id="iconSun" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  </button>
+</div>
+
+<!-- ================= HOME ================= -->
+<div id="v-home" class="view">
+  <div class="eyebrow">Dan</div>
+  <h1 class="page">Road to 199</h1>
+
+  <div class="prog">
+    <div class="nums">
+      <div><div class="lbl">7-day average</div><div class="big" id="curW">209.8</div></div>
+      <div style="text-align:right"><div class="lbl">To go</div><div class="big" id="toGo">10.8</div></div>
+    </div>
+    <div class="bar" id="barWrap"><i id="barFill" style="width:8%"></i></div>
+    <div class="row">
+      <input type="number" step="0.1" id="wIn" placeholder="Enter this week's 7-day average" inputmode="decimal">
+      <button onclick="saveW()">Update</button>
+    </div>
+    <div class="hint">Start 214.4 (July 5 peak) &middot; Goal 199.0 &middot; Weigh daily, judge only the 7-day average</div>
+  </div>
+
+  <div class="tiles">
+    <a class="tile full" href="#full">
+      <div class="who">July 18 &ndash; November 3</div>
+      <div class="what">Full<br>Playbook</div>
+    </a>
+    <a class="tile wk" href="#week1">
+      <div class="who">July 19 &ndash; 25</div>
+      <div class="what">Week 1<br>Playbook</div>
+    </a>
+  </div>
+</div>
+
+<!-- ================= FULL PLAYBOOK ================= -->
+<div id="v-full" class="view">
+  <div class="viewhead full"><div class="who">Dan</div><div class="what">Full Playbook</div></div>
+
+  <details class="card" open id="s-targets">
+    <summary>Daily targets</summary>
+    <div class="inner">
+      <ul class="plain">
+        <li><b>2,000&ndash;2,200 calories</b><span class="sub">A real deficit at your size &mdash; nearly double the winter crash-diet intake</span></li>
+        <li><b>185g+ protein</b><span class="sub">This is what makes the loss come from fat instead of muscle</span></li>
+        <li><b>Floor: never under 1,800</b><span class="sub">Two days under the floor in a week = flag it at Friday check-in</span></li>
+        <li><b>Elliptical: 45 min max per session, 4 sessions max per week</b><span class="sub">Lifting first &mdash; elliptical after or on off days</span></li>
+        <li><b>Weigh every morning</b><span class="sub">Judge only the 7-day average. Single days mean nothing.</span></li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="card" open id="s-template">
+    <summary>Daily food template</summary>
+    <div class="inner">
+      <table>
+        <tr><th>Slot</th><th>Example</th><th>Cal</th><th>Protein</th></tr>
+        <tr><td>Breakfast</td><td>Cookie Dough Overnight Oats</td><td class="num">376</td><td class="num">40g</td></tr>
+        <tr><td>Lunch</td><td>Meal-prep portion (casserole or chicken)</td><td class="num">~500</td><td class="num">~65g</td></tr>
+        <tr><td>Afternoon</td><td>Barebells bar</td><td class="num">200</td><td class="num">20g</td></tr>
+        <tr><td>Dinner</td><td>Family dinner, protein first</td><td class="num">~550</td><td class="num">~35g</td></tr>
+        <tr><td>Dessert</td><td>One 5-star protein dessert</td><td class="num">~475</td><td class="num">~45g</td></tr>
+        <tr><td><b>Total</b></td><td></td><td class="num"><b>~2,100</b></td><td class="num"><b>~190g</b></td></tr>
+      </table>
+      <div class="note">Dinner doesn't need to be perfect &mdash; the other four slots already carry ~150g protein before dinner is on the table.</div>
+    </div>
+  </details>
+
+  <details class="callout card" id="s-oats">
+    <summary>&#128064; Oatmeal rotation &mdash; 9 options rated 4+</summary>
+    <div class="inner">
+      <table>
+        <tr><th>Recipe</th><th>Book</th><th>Cal</th><th>Protein</th></tr>
+        <tr><td>Cookie Dough Overnight Oats &#9733;5</td><td>RJF p25</td><td class="num">376</td><td class="num">40g</td></tr>
+        <tr><td>Oreo Overnight Oats &#9733;5</td><td>RJF p41</td><td class="num">320</td><td class="num">35g</td></tr>
+        <tr><td>Brown Sugar Overnight Oats &#9733;5</td><td>RJF p52</td><td class="num">317</td><td class="num">34g</td></tr>
+        <tr><td>Oatmeal Creme Pies &#9733;5</td><td>RJF p332</td><td class="num">799</td><td class="num">81g</td></tr>
+        <tr><td>Customizable Protein Oatmeal Base &#9733;5</td><td>FDL p18</td><td class="num">411</td><td class="num">28g</td></tr>
+        <tr><td>Power Oatmeal &#9733;4</td><td>RJF p20</td><td class="num">402</td><td class="num">38g</td></tr>
+        <tr><td>Lean Body Oatmeal &#9733;4</td><td>RJF p46</td><td class="num">272</td><td class="num">29g</td></tr>
+        <tr><td>Oreo Lovers Protein Oatmeal &#9733;4</td><td>FDL p21</td><td class="num">468</td><td class="num">34g</td></tr>
+        <tr><td>XL Protein Oatmeal Cream Pie &#9733;4</td><td>FDL p195</td><td class="num">280</td><td class="num">33g</td></tr>
+      </table>
+      <div class="note">Overnight oats prep Sunday for weekdays. Hot bowls (Power Oatmeal, FDL Base) for weekend mornings. Oatmeal Creme Pies counts as breakfast + the dessert slot in one.</div>
+    </div>
+  </details>
+
+  <details class="callout card" id="s-dessert">
+    <summary>&#128064; Dessert rotation &mdash; the nightly slot</summary>
+    <div class="inner">
+      <table>
+        <tr><th>Recipe</th><th>Cal</th><th>Protein</th></tr>
+        <tr><td>Chocolate Chip Pizookie</td><td class="num">616</td><td class="num">73g</td></tr>
+        <tr><td>Protein Peanut Butter Cups (&#8531; batch)</td><td class="num">~535</td><td class="num">~58g</td></tr>
+        <tr><td>Oreo Protein Pudding</td><td class="num">576</td><td class="num">65g</td></tr>
+        <tr><td>PB Cup No Bake Cheesecake</td><td class="num">582</td><td class="num">80g</td></tr>
+        <tr><td>Cookies &amp; Cream Ice Cream</td><td class="num">1031</td><td class="num">129g</td></tr>
+        <tr><td>4 Ingredient Protein Bomb</td><td class="num">504</td><td class="num">84g</td></tr>
+        <tr><td>Cookie Butter Protein Pudding</td><td class="num">622</td><td class="num">77g</td></tr>
+        <tr><td>Cinnamon Swirl Cake</td><td class="num">462</td><td class="num">64g</td></tr>
+      </table>
+      <div class="note">Every day ends with one of these. It's how 185g happens without white-knuckling.</div>
+    </div>
+  </details>
+
+  <details class="card" open id="s-lifts">
+    <summary>Lift split &mdash; Month 1</summary>
+    <div class="inner">
+      <div class="note" style="margin:0 0 12px">3 days per week, 35&ndash;40 minutes. Every exercise below is one you rated 4 or 5. No leg day in Month 1 &mdash; habit before optimization.</div>
+      <div class="lift">
+        <div class="t">Day A &mdash; Chest + Biceps</div>
+        <table>
+          <tr><td>Dumbbell Bench Press</td><td class="num">3 &times; 8&ndash;12</td></tr>
+          <tr><td>Incline Dumbbell Press</td><td class="num">3 &times; 8&ndash;12</td></tr>
+          <tr><td>Dumbbell Fly</td><td class="num">2 &times; 12&ndash;15</td></tr>
+          <tr><td>Standing Dumbbell Curl</td><td class="num">3 &times; 10&ndash;12</td></tr>
+          <tr><td>Hammer Curl</td><td class="num">2 &times; 10&ndash;12</td></tr>
+        </table>
+      </div>
+      <div class="lift">
+        <div class="t">Day B &mdash; Shoulders + Triceps</div>
+        <table>
+          <tr><td>Arnold Press</td><td class="num">3 &times; 8&ndash;12</td></tr>
+          <tr><td>Machine Chest Press</td><td class="num">3 &times; 8&ndash;12</td></tr>
+          <tr><td>Dumbbell Lateral Raise</td><td class="num">3 &times; 12&ndash;15</td></tr>
+          <tr><td>Rope Pushdown</td><td class="num">3 &times; 10&ndash;12</td></tr>
+          <tr><td>Cable Pushdown (bar)</td><td class="num">2 &times; 12&ndash;15</td></tr>
+        </table>
+      </div>
+      <div class="lift">
+        <div class="t">Day C &mdash; Arms + Pump</div>
+        <table>
+          <tr><td>Preacher Curl</td><td class="num">3 &times; 10&ndash;12</td></tr>
+          <tr><td>Incline Dumbbell Curl</td><td class="num">2 &times; 10&ndash;12</td></tr>
+          <tr><td>Cable Curl</td><td class="num">2 &times; 12&ndash;15</td></tr>
+          <tr><td>Concentration Curl</td><td class="num">2 &times; 12&ndash;15</td></tr>
+          <tr><td>Chest movement of choice (any Day A press)</td><td class="num">3 &times; 8&ndash;12</td></tr>
+        </table>
+      </div>
+      <ul class="plain">
+        <li><b>Rest 90 sec &ndash; 2 min between sets</b></li>
+        <li><b>Progression:</b> when you hit the top of a rep range on all sets, add 5 lbs next session</li>
+        <li><b>Elliptical after lifting is optional</b> &mdash; 20&ndash;30 min, and it counts against the weekly cap of 4</li>
+      </ul>
+      <div class="lead">What layers in later</div>
+      <ul class="plain">
+        <li><b>Month 2 (mid-Aug):</b> back work you rated 3 &mdash; Lat Pulldown, Seated Cable Row, Face Pulls &mdash; added to Day B and C</li>
+        <li><b>Month 3 (mid-Sep):</b> micro-dosed legs &mdash; Walking Lunges + Standing Calf Raise as finishers, 2 days per week. Legs need to be under you before goalie reps start Oct 29.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="card" open id="s-cal">
+    <summary>Calendar &mdash; four phases</summary>
+    <div class="inner">
+      <div class="day"><div class="d">Phase 1 &middot; Jul 18 &ndash; Aug 9</div><div class="t">Reset</div>
+        <div class="x">Logging back on daily. Lift split starts Mon Jul 20. Meal prep Sundays. PLL weekend Aug 1&ndash;2: protein first, no tracking guilt, back Monday. Target: ~205 by Aug 9.</div></div>
+      <div class="day"><div class="d">Phase 2 &middot; Aug 10 &ndash; Sep 29</div><div class="t">The cut engine</div>
+        <div class="x">School routine starts Aug 10 &mdash; lifts anchor to it. Seven clean weeks. Target: cross 199 by ~Sep 18, board the plane at 197&ndash;198.</div></div>
+      <div class="day"><div class="d">Sep 30 &ndash; Oct 3</div><div class="t">Jamaica</div>
+        <div class="x">Vacation fully. Protein at breakfast, walk a lot. Expect +3&ndash;4 lbs of water weight &mdash; it's not fat and it clears in a week.</div></div>
+      <div class="day"><div class="d">Phase 3 &middot; Oct 4 &ndash; Oct 22</div><div class="t">Land the plane</div>
+        <div class="x">Back to the system. Jamaica bounce clears by ~Oct 10. Anniversary dinner Oct 12 is a planned meal. Walk into the Lushin Retreat Oct 22 under 199.</div></div>
+      <div class="day"><div class="d">Oct 29 &middot; Nov 3</div><div class="t">Fall league + 40</div>
+        <div class="x">Week 1 of men's league with 14 weeks of lifting behind you. Turn 40 under 199 with the shoulders and arms you actually trained.</div></div>
+    </div>
+  </details>
+
+  <details class="card" open id="s-checkin">
+    <summary>Friday check-in</summary>
+    <div class="inner">
+      <ul class="plain">
+        <li><b>Report four things:</b> 7-day average weight &middot; lifts completed (target 3) &middot; protein average &middot; one flag if anything's slipping</li>
+        <li><b>Two stalled weeks = we adjust together</b><span class="sub">You don't slash calories solo. That's the pattern interrupt.</span></li>
+        <li><b>Under the 1,800 floor twice in a week = same rule</b><span class="sub">Under-eating is the old engine. Flag it, don't ride it.</span></li>
+      </ul>
+    </div>
+  </details>
+</div>
+
+<!-- ================= WEEK 1 ================= -->
+<div id="v-week1" class="view">
+  <div class="viewhead wk"><div class="who">Dan</div><div class="what">Week 1 Playbook</div></div>
+
+  <details class="card" open id="w-sched">
+    <summary>The week</summary>
+    <div class="inner">
+      <div class="day"><div class="d">Sun Jul 19</div><div class="t">Prep day</div><div class="x">Groceries arrive. Cook the casserole (double batch), build 5 oat jars, make the PB cup batch. ~90 minutes total.</div></div>
+      <div class="day"><div class="d">Mon Jul 20</div><div class="t">Day A &mdash; Chest + Biceps</div><div class="x">First lift. Optional 20 min elliptical after.</div></div>
+      <div class="day"><div class="d">Tue Jul 21</div><div class="t">Off or elliptical</div><div class="x">30&ndash;45 min if you want it. Walking counts too.</div></div>
+      <div class="day"><div class="d">Wed Jul 22</div><div class="t">Day B &mdash; Shoulders + Triceps</div><div class="x">Optional elliptical after.</div></div>
+      <div class="day"><div class="d">Thu Jul 23</div><div class="t">Off</div><div class="x">Full rest or a walk.</div></div>
+      <div class="day"><div class="d">Fri Jul 24</div><div class="t">Day C &mdash; Arms + Pump, then check-in</div><div class="x">Send: 7-day average &middot; 3/3 lifts &middot; protein average &middot; any flag.</div></div>
+      <div class="day"><div class="d">Sat Jul 25</div><div class="t">Off or elliptical</div><div class="x">Waffles morning if you want the griddle out.</div></div>
+    </div>
+  </details>
+
+  <details class="card" open id="w-lifts">
+    <summary>Week 1 lift cards &mdash; finding your weights</summary>
+    <div class="inner">
+      <div class="note" style="margin:0 0 12px">This week's job is calibration, not effort. On every exercise: start lighter than you think, do a set of 10, and add weight until the last 2 reps are genuinely hard. That's your working weight &mdash; log it. Week 2 starts progression from there.</div>
+      <div class="lift">
+        <div class="t">Day A &mdash; Mon</div>
+        <table>
+          <tr><td>Dumbbell Bench Press</td><td class="num">3 &times; 10</td></tr>
+          <tr><td>Incline Dumbbell Press</td><td class="num">3 &times; 10</td></tr>
+          <tr><td>Dumbbell Fly</td><td class="num">2 &times; 12</td></tr>
+          <tr><td>Standing Dumbbell Curl</td><td class="num">3 &times; 10</td></tr>
+          <tr><td>Hammer Curl</td><td class="num">2 &times; 10</td></tr>
+        </table>
+      </div>
+      <div class="lift">
+        <div class="t">Day B &mdash; Wed</div>
+        <table>
+          <tr><td>Arnold Press</td><td class="num">3 &times; 10</td></tr>
+          <tr><td>Machine Chest Press</td><td class="num">3 &times; 10</td></tr>
+          <tr><td>Dumbbell Lateral Raise</td><td class="num">3 &times; 12</td></tr>
+          <tr><td>Rope Pushdown</td><td class="num">3 &times; 12</td></tr>
+          <tr><td>Cable Pushdown (bar)</td><td class="num">2 &times; 12</td></tr>
+        </table>
+      </div>
+      <div class="lift">
+        <div class="t">Day C &mdash; Fri</div>
+        <table>
+          <tr><td>Preacher Curl</td><td class="num">3 &times; 10</td></tr>
+          <tr><td>Incline Dumbbell Curl</td><td class="num">2 &times; 10</td></tr>
+          <tr><td>Cable Curl</td><td class="num">2 &times; 12</td></tr>
+          <tr><td>Concentration Curl</td><td class="num">2 &times; 12</td></tr>
+          <tr><td>Dumbbell Bench Press</td><td class="num">3 &times; 10</td></tr>
+        </table>
+      </div>
+      <ul class="plain">
+        <li><b>Rest 90 sec between sets</b> &mdash; set a timer, don't guess</li>
+        <li><b>Log every working weight</b> &mdash; notes app or the machine pin number, doesn't matter, just capture it</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="card" open id="w-prep">
+    <summary>Sunday prep &mdash; check them off</summary>
+    <div class="inner">
+      <ul class="chk">
+        <li><input type="checkbox" id="p1"><label for="p1">Cheesy Chicken Bacon Casserole &mdash; <b>double batch</b><span class="qty">Bake once, portion into 4 lunch containers (~500 cal / 80g protein each)</span></label></li>
+        <li><input type="checkbox" id="p2"><label for="p2">5 overnight oat jars<span class="qty">Mon&ndash;Fri breakfasts: 2&times; Cookie Dough, 2&times; Oreo, 1&times; Brown Sugar</span></label></li>
+        <li><input type="checkbox" id="p3"><label for="p3">Protein Peanut Butter Cups &mdash; full batch<span class="qty">Fridge batch covers 3 dessert nights (~535 cal / 58g each). Pizookie is a make-fresh night.</span></label></li>
+        <li><input type="checkbox" id="p4"><label for="p4">Barebells to the desk / bag<span class="qty">One per day, afternoon slot</span></label></li>
+        <li><input type="checkbox" id="p5"><label for="p5">Log tomorrow's food tonight in MyFitnessPal<span class="qty">Pre-logging beats recall-logging &mdash; June's log died from recall</span></label></li>
+      </ul>
+      <div class="flag">Oat jar ingredients below use the standard RJF overnight-oats base &mdash; the book pages (25, 41, 52) aren't in this project's files. Check those three pages before ordering in case a mix-in differs.</div>
+    </div>
+  </details>
+
+  <details class="card" open id="w-groc">
+    <summary>Grocery list &mdash; order tonight</summary>
+    <div class="inner">
+      <button class="copybtn" onclick="copyList(this)">Copy full list for Walmart+ / Instacart search</button>
+
+      <div class="grocehead">Meat &amp; protein</div>
+      <ul class="chk">
+        <li><input type="checkbox" id="g1a"><label for="g1a">Chicken breast<span class="qty">2 lb (casserole double batch uses ~1.5 lb)</span></label></li>
+        <li><input type="checkbox" id="g1b"><label for="g1b">Turkey bacon<span class="qty">1 pack</span></label></li>
+        <li><input type="checkbox" id="g1c"><label for="g1c">Extra chicken breast or thighs for dinners<span class="qty">~3 lb</span></label></li>
+        <li><input type="checkbox" id="g1d"><label for="g1d">93/7 lean ground beef or turkey<span class="qty">2 lb, dinner support</span></label></li>
+        <li><input type="checkbox" id="g1e"><label for="g1e">Liquid egg whites<span class="qty">2 cartons &mdash; waffles + pizookie + scrambles</span></label></li>
+      </ul>
+
+      <div class="grocehead">Dairy &amp; fridge</div>
+      <ul class="chk">
+        <li><input type="checkbox" id="g2a"><label for="g2a">Fat free cheddar, shredded<span class="qty">2 bags (12 oz total)</span></label></li>
+        <li><input type="checkbox" id="g2b"><label for="g2b">Fat free cream cheese<span class="qty">2 tubs</span></label></li>
+        <li><input type="checkbox" id="g2c"><label for="g2c">Nonfat Greek yogurt<span class="qty">32 oz tub &mdash; oat jars</span></label></li>
+        <li><input type="checkbox" id="g2d"><label for="g2d">Unsweetened almond milk<span class="qty">2 half-gallons &mdash; oats, PB cups, waffle batter</span></label></li>
+        <li><input type="checkbox" id="g2e"><label for="g2e">Halo Top, vanilla or cookies &amp; cream<span class="qty">1 pint &mdash; pizookie topper</span></label></li>
+      </ul>
+
+      <div class="grocehead">Pantry</div>
+      <ul class="chk">
+        <li><input type="checkbox" id="g3a"><label for="g3a">Old fashioned rolled oats<span class="qty">1 large canister</span></label></li>
+        <li><input type="checkbox" id="g3b"><label for="g3b">Whey protein, vanilla<span class="qty">Big tub &mdash; oats, waffles, desserts all pull from it</span></label></li>
+        <li><input type="checkbox" id="g3c"><label for="g3c">Whey protein, chocolate<span class="qty">1 tub &mdash; PB cups + chocolate desserts</span></label></li>
+        <li><input type="checkbox" id="g3d"><label for="g3d">Sugar-free vanilla pudding mix<span class="qty">3 boxes &mdash; oat jar thickener</span></label></li>
+        <li><input type="checkbox" id="g3e"><label for="g3e">Sugar-free chocolate chips<span class="qty">2 bags &mdash; oats, PB cups, pizookie</span></label></li>
+        <li><input type="checkbox" id="g3f"><label for="g3f">Oreo Thins<span class="qty">1 pack &mdash; Oreo oat jars</span></label></li>
+        <li><input type="checkbox" id="g3g"><label for="g3g">Brown sugar zero-calorie sweetener (Swerve or similar)<span class="qty">1 bag</span></label></li>
+        <li><input type="checkbox" id="g3h"><label for="g3h">Zero-calorie sweetener, granular<span class="qty">1 bag</span></label></li>
+        <li><input type="checkbox" id="g3i"><label for="g3i">Natural peanut butter<span class="qty">1 jar &mdash; PB cups</span></label></li>
+        <li><input type="checkbox" id="g3j"><label for="g3j">Coconut oil<span class="qty">Small jar &mdash; PB cups</span></label></li>
+        <li><input type="checkbox" id="g3k"><label for="g3k">Coconut flour<span class="qty">Small bag &mdash; waffles</span></label></li>
+        <li><input type="checkbox" id="g3l"><label for="g3l">Unsweetened applesauce<span class="qty">1 jar &mdash; waffles</span></label></li>
+        <li><input type="checkbox" id="g3m"><label for="g3m">Canned pumpkin<span class="qty">1 can &mdash; pizookie base</span></label></li>
+        <li><input type="checkbox" id="g3n"><label for="g3n">Cream of chicken soup<span class="qty">1 can &mdash; casserole</span></label></li>
+        <li><input type="checkbox" id="g3o"><label for="g3o">Parmesan bread crumbs<span class="qty">1 container &mdash; casserole top</span></label></li>
+        <li><input type="checkbox" id="g3p"><label for="g3p">Baking soda + baking powder<span class="qty">Skip if stocked</span></label></li>
+        <li><input type="checkbox" id="g3q"><label for="g3q">White rice<span class="qty">Dinner support</span></label></li>
+      </ul>
+
+      <div class="grocehead">Produce &amp; frozen</div>
+      <ul class="chk">
+        <li><input type="checkbox" id="g4a"><label for="g4a">Cauliflower florets<span class="qty">2 bags (~850g) &mdash; casserole</span></label></li>
+        <li><input type="checkbox" id="g4b"><label for="g4b">Green onions<span class="qty">1 bunch</span></label></li>
+        <li><input type="checkbox" id="g4c"><label for="g4c">White onion<span class="qty">1</span></label></li>
+        <li><input type="checkbox" id="g4d"><label for="g4d">Frozen broccoli<span class="qty">2 bags &mdash; dinner veg</span></label></li>
+        <li><input type="checkbox" id="g4e"><label for="g4e">Frozen green beans<span class="qty">1 bag &mdash; dinner veg</span></label></li>
+        <li><input type="checkbox" id="g4f"><label for="g4f">Bananas + berries<span class="qty">Week's worth</span></label></li>
+      </ul>
+
+      <div class="grocehead">Snacks</div>
+      <ul class="chk">
+        <li><input type="checkbox" id="g5a"><label for="g5a">Barebells protein bars<span class="qty">12-count &mdash; one per day covers the week with spares</span></label></li>
+      </ul>
+
+      <div class="note">Veg picks skip your never-list (no peppers, carrots, peas, mushrooms, tomatoes). Broccoli and green beans are the clean staples.</div>
+    </div>
+  </details>
+</div>
+
+</div>
+<script>
+// theme
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  document.getElementById('iconMoon').style.display = t==='light' ? 'block' : 'none';
+  document.getElementById('iconSun').style.display = t==='dark' ? 'block' : 'none';
+}
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme');
+  var next = cur==='light' ? 'dark' : 'light';
+  applyTheme(next);
+  try{ localStorage.setItem('rt199_theme', next); }catch(e){}
+}
+(function(){
+  var t = 'light';
+  try{ var s = localStorage.getItem('rt199_theme'); if(s==='dark'||s==='light') t = s; }catch(e){}
+  applyTheme(t);
+})();
+
+// side nav
+function navOpen(){ document.getElementById('snav').classList.add('on'); document.getElementById('scrim').classList.add('on'); }
+function navClose(){ document.getElementById('snav').classList.remove('on'); document.getElementById('scrim').classList.remove('on'); }
+function navGo(id){
+  navClose();
+  setTimeout(function(){
+    var el = document.getElementById(id);
+    if(el){ el.setAttribute('open',''); el.scrollIntoView({behavior:'smooth',block:'start'}); }
+  }, 60);
+}
+
+// hash routing
+function route(){
+  var h = location.hash.replace('#','') || 'home';
+  ['home','full','week1'].forEach(function(v){
+    var el = document.getElementById('v-'+v);
+    if(el) el.classList.toggle('on', v===h);
+  });
+  document.querySelectorAll('.snav > a').forEach(function(a){
+    a.classList.toggle('on', a.getAttribute('href')==='#'+h);
+  });
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange', route);
+route();
+
+// progress widget
+var START = 214.4, GOAL = 199.0;
+function render(w){
+  var pct = Math.min(100, Math.max(0, (START - w) / (START - GOAL) * 100));
+  document.getElementById('curW').textContent = w.toFixed(1);
+  var togo = Math.max(0, w - GOAL);
+  document.getElementById('toGo').textContent = togo.toFixed(1);
+  document.getElementById('barFill').style.width = pct + '%';
+  document.getElementById('barWrap').classList.toggle('done', w <= GOAL);
+}
+function saveW(){
+  var v = parseFloat(document.getElementById('wIn').value);
+  if(!v || v < 150 || v > 300) return;
+  render(v);
+  try{ localStorage.setItem('rt199_w', v); }catch(e){}
+  document.getElementById('wIn').value = '';
+}
+(function(){
+  var w = 209.8;
+  try{ var s = localStorage.getItem('rt199_w'); if(s) w = parseFloat(s); }catch(e){}
+  render(w);
+})();
+
+// persist checklists
+document.querySelectorAll('.chk input').forEach(function(cb){
+  try{ if(localStorage.getItem('rt199_'+cb.id)==='1') cb.checked = true; }catch(e){}
+  cb.addEventListener('change', function(){
+    try{ localStorage.setItem('rt199_'+cb.id, cb.checked?'1':'0'); }catch(e){}
+  });
+});
+
+// copy grocery list
+function copyList(btn){
+  var lines = [];
+  document.querySelectorAll('#v-week1 .grocehead').forEach(function(h){
+    lines.push('');
+    lines.push(h.textContent.toUpperCase());
+    var ul = h.nextElementSibling;
+    ul.querySelectorAll('label').forEach(function(l){
+      var name = l.childNodes[0].textContent || l.textContent;
+      var qty = l.querySelector('.qty');
+      lines.push('- ' + name.trim() + (qty ? ' - ' + qty.textContent : ''));
+    });
+  });
+  var txt = lines.join('\n').trim();
+  function ok(){ btn.textContent = 'Copied'; btn.classList.add('ok'); setTimeout(function(){btn.textContent='Copy full list for Walmart+ / Instacart search';btn.classList.remove('ok');},2000); }
+  try{ navigator.clipboard.writeText(txt).then(ok); }
+  catch(e){
+    var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');ok();}catch(e2){}
+    document.body.removeChild(ta);
+  }
+}
+</script>
+</body>
+</html>
