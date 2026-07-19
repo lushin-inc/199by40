@@ -205,18 +205,6 @@ ul.plain b{font-weight:700}
 <div id="v-home" class="view">
   <div class="eyebrow">Dan</div>
   <h1 class="page">Road to 199</h1>
-  <div class="prog">
-    <div class="nums">
-      <div><div class="lbl">7-day average</div><div class="big" id="curW">209.8</div></div>
-      <div style="text-align:right"><div class="lbl">To go</div><div class="big" id="toGo">10.8</div></div>
-    </div>
-    <div class="bar" id="barWrap"><i id="barFill" style="width:8%"></i></div>
-    <div class="row">
-      <input type="number" step="0.1" id="wIn" placeholder="Enter this week's 7-day average" inputmode="decimal">
-      <button onclick="saveW()">Update</button>
-    </div>
-    <div class="hint">Start 214.4 (July 5 peak) &middot; Goal 199.0 &middot; Weigh daily, judge only the 7-day average</div>
-  </div>
   <div class="tiles">
     <a class="tile full" href="#full"><div class="who">July 18 &ndash; November 3</div><div class="what">Full<br>Playbook</div></a>
     <a class="tile wk" href="#week1"><div class="who">July 19 &ndash; 25</div><div class="what">Week 1<br>Playbook</div></a>
@@ -416,6 +404,19 @@ ul.plain b{font-weight:700}
 <div id="v-full-checkin" class="view">
   <a class="back" href="#full">&#8249; Full Playbook</a>
   <div class="phead g-checkin"><div class="who">Full Playbook</div><div class="what">Monday check-in</div></div>
+  <div class="prog">
+    <div class="nums">
+      <div><div class="lbl">7-day average</div><div class="big" id="curW">209.8</div></div>
+      <div style="text-align:right"><div class="lbl">To go</div><div class="big" id="toGo">10.8</div></div>
+    </div>
+    <div class="bar" id="barWrap"><i id="barFill" style="width:8%"></i></div>
+    <div class="row">
+      <input type="number" step="0.1" id="wIn" placeholder="Enter this week's 7-day average" inputmode="decimal">
+      <button onclick="saveW()">Update</button>
+    </div>
+    <div class="hint">Start 214.4 (July 5 peak) &middot; Goal 199.0 &middot; Weigh daily, judge only the 7-day average</div>
+  </div>
+
   <div class="card">
     <ul class="plain">
       <li><b>Every Monday, report four things from last week:</b> 7-day average weight &middot; lifts completed (target 3) &middot; protein average &middot; one flag if anything's slipping</li>
