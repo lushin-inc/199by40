@@ -113,7 +113,8 @@ h1.page{font-size:19px;font-weight:600;color:var(--soft);margin:2px 0 26px}
 .g-week{background:linear-gradient(155deg,#0d9488,#14b8a6)}
 .g-cards{background:linear-gradient(155deg,#047857,#10b981)}
 .g-prep{background:linear-gradient(155deg,#059669,#34d399)}
-.g-grocery{background:linear-gradient(155deg,#0891b2,#22d3ee)}
+.g-walmart{background:linear-gradient(155deg,#0057b8,#2e8bff)}
+.g-instacart{background:linear-gradient(155deg,#2e7d32,#43b02a)}
 .g-meals{background:linear-gradient(155deg,#4d7c0f,#84cc16)}
 
 table{width:100%;border-collapse:collapse;font-size:14px}
@@ -135,6 +136,8 @@ ul.plain b{font-weight:700}
 .day .d{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.07em;font-weight:700}
 .day .t{font-size:16px;font-weight:700;margin:3px 0 3px}
 .day .x{font-size:14px;color:var(--soft)}
+.day ul.plain li{font-size:14px;padding:6px 0;color:var(--soft)}
+.day ul.plain b{color:var(--text)}
 
 .lift{background:var(--panel2);border-radius:14px;padding:17px;margin-bottom:12px}
 .lift .t{font-size:17px;font-weight:800;margin-bottom:8px}
@@ -221,7 +224,8 @@ ul.plain b{font-weight:700}
   <a class="sub" href="#week1/meals" data-h="week1/meals" onclick="navClose()">Daily meal plan</a>
   <a class="sub" href="#week1/cards" data-h="week1/cards" onclick="navClose()">Lift cards</a>
   <a class="sub" href="#week1/prep" data-h="week1/prep" onclick="navClose()">Sunday prep</a>
-  <a class="sub" href="#week1/grocery" data-h="week1/grocery" onclick="navClose()">Grocery list</a>
+  <a class="sub" href="#week1/walmart" data-h="week1/walmart" onclick="navClose()">Walmart+ order</a>
+  <a class="sub" href="#week1/instacart" data-h="week1/instacart" onclick="navClose()">Instacart order</a>
 </nav>
 
 <div class="wrap">
@@ -430,15 +434,35 @@ ul.plain b{font-weight:700}
   </div>
   <div class="card">
     <div class="day"><div class="d">Phase 1 &middot; Jul 18 &ndash; Aug 9</div><div class="t">Reset</div>
-      <div class="x"><b>Logging back on daily.</b> Lifts start <b>Mon Jul 20</b>. Meal prep Sundays. PLL Aug 1&ndash;2: protein first, back Monday. Target: <b>~205 by Aug 9</b>.</div></div>
+      <ul class="plain">
+        <li><b>Logging back on daily</b></li>
+        <li>Lifts start <b>Mon Jul 20</b> &middot; meal prep Sundays</li>
+        <li>PLL Aug 1&ndash;2: <b>protein first, back Monday</b></li>
+        <li>Target: <b>~205 by Aug 9</b></li>
+      </ul></div>
     <div class="day"><div class="d">Phase 2 &middot; Aug 10 &ndash; Sep 29</div><div class="t">The cut engine</div>
-      <div class="x">School starts <b>Aug 10</b> &mdash; lifts anchor to it. Seven clean weeks. Target: <b>cross 199 by ~Sep 18</b>, board the plane at <b>197&ndash;198</b>.</div></div>
+      <ul class="plain">
+        <li>School starts <b>Aug 10</b> &mdash; lifts anchor to it</li>
+        <li><b>Seven clean weeks</b></li>
+        <li><b>Cross 199 by ~Sep 18</b></li>
+        <li>Board the plane at <b>197&ndash;198</b></li>
+      </ul></div>
     <div class="day"><div class="d">Sep 30 &ndash; Oct 3</div><div class="t">Jamaica</div>
-      <div class="x"><b>Vacation fully.</b> Protein at breakfast, walk a lot. Expect <b>+3&ndash;4 lbs of water</b> &mdash; not fat, clears in a week.</div></div>
+      <ul class="plain">
+        <li><b>Vacation fully</b> &mdash; protein at breakfast, walk a lot</li>
+        <li>Expect <b>+3&ndash;4 lbs of water</b> &mdash; not fat, clears in a week</li>
+      </ul></div>
     <div class="day"><div class="d">Phase 3 &middot; Oct 4 &ndash; Oct 22</div><div class="t">Land the plane</div>
-      <div class="x">Back to the system. Bounce clears by <b>~Oct 10</b>. Anniversary Oct 12 is a <b>planned meal</b>. Walk into the retreat Oct 22 <b>under 199</b>.</div></div>
+      <ul class="plain">
+        <li>Back to the system &mdash; bounce clears by <b>~Oct 10</b></li>
+        <li>Anniversary Oct 12 is a <b>planned meal</b></li>
+        <li>Walk into the retreat Oct 22 <b>under 199</b></li>
+      </ul></div>
     <div class="day"><div class="d">Oct 29 &middot; Nov 3</div><div class="t">Fall league + 40</div>
-      <div class="x">League starts with <b>14 weeks of lifting</b> behind you. Turn 40 <b>under 199</b> with the shoulders and arms you actually trained.</div></div>
+      <ul class="plain">
+        <li>League starts with <b>14 weeks of lifting</b> behind you</li>
+        <li>Turn 40 <b>under 199</b> &mdash; the shoulders and arms you actually trained</li>
+      </ul></div>
   </div>
   <div class="next"><a href="#full/goals">Weekly goals &#8250;</a></div>
 </div>
@@ -518,7 +542,8 @@ ul.plain b{font-weight:700}
     <a class="gt g-meals" href="#week1/meals"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><div class="t">Daily meal plan</div></a>
     <a class="gt g-cards" href="#week1/cards"><svg viewBox="0 0 24 24"><path d="M2 12h3M19 12h3M7 8v8M17 8v8M7 12h10"/></svg><div class="t">Lift cards</div></a>
     <a class="gt g-prep" href="#week1/prep"><svg viewBox="0 0 24 24"><path d="M4 12l5 5 11-11"/></svg><div class="t">Sunday prep</div></a>
-    <a class="gt g-grocery" href="#week1/grocery"><svg viewBox="0 0 24 24"><path d="M4 6h2l2.5 11h9L20 9H7"/><circle cx="10" cy="20" r="1.5"/><circle cx="16" cy="20" r="1.5"/></svg><div class="t">Grocery list</div></a>
+    <a class="gt g-walmart" href="#week1/walmart"><svg viewBox="0 0 24 24"><path d="M4 6h2l2.5 11h9L20 9H7"/><circle cx="10" cy="20" r="1.5"/><circle cx="16" cy="20" r="1.5"/></svg><div class="t">Walmart+ order</div></a>
+    <a class="gt g-instacart" href="#week1/instacart"><svg viewBox="0 0 24 24"><path d="M5 7h14l-1.5 9h-11z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><div class="t">Instacart order</div></a>
   </div>
 </div>
 
@@ -690,14 +715,13 @@ ul.plain b{font-weight:700}
     <div class="note">The nightly pudding is a <b>5-minute fresh make</b> &mdash; no batch needed. Weekend desserts get made on the day.</div>
     <div class="flag">Oat jar ingredients use the standard RJF overnight-oats base &mdash; the book pages (25, 41, 52) aren't in this project's files. Check p25 before your first batch in case a mix-in differs.</div>
   </div>
-  <div class="next"><a href="#week1/grocery">Grocery list &#8250;</a></div>
+  <div class="next"><a href="#week1/walmart">Walmart+ order &#8250;</a></div>
 </div>
 
 <!-- WEEK1 / GROCERY -->
-<div id="v-week1-grocery" class="view">
+<div id="v-week1-walmart" class="view">
   <a class="back" href="#week1">&#8249; Week 1</a>
-  <div class="phead g-grocery"><div class="who">Week 1</div><div class="what">Grocery list</div></div>
-
+  <div class="phead g-walmart"><div class="who">Week 1 &middot; Grocery</div><div class="what">Walmart+ order</div></div>
   <div class="card" id="gc-walmart">
     <div class="lead" style="margin-top:0">Walmart+ order &mdash; pantry, frozen, packaged</div>
     <div class="note" style="margin:8px 0 4px">Best prices on <b>shelf-stable and frozen</b>; Great Value covers most of it. Delivery slot: <b>tonight or early tomorrow</b>.</div>
@@ -735,7 +759,12 @@ ul.plain b{font-weight:700}
       <li><input type="checkbox" id="w23"><label for="w23">Barebells protein bars<span class="qty">12-count &mdash; cheapest per-bar at Walmart</span></label></li>
     </ul>
   </div>
+  <div class="next"><a href="#week1/instacart">Instacart order &#8250;</a></div>
+</div>
 
+<div id="v-week1-instacart" class="view">
+  <a class="back" href="#week1">&#8249; Week 1</a>
+  <div class="phead g-instacart"><div class="who">Week 1 &middot; Grocery</div><div class="what">Instacart order</div></div>
   <div class="card" id="gc-instacart">
     <div class="lead" style="margin-top:0">Instacart order (Kroger) &mdash; fresh meat, dairy, produce</div>
     <div class="note" style="margin:8px 0 4px">Better <b>fresh quality and fat-free dairy selection</b>; Kroger reliably stocks the fat-free cheeses. Delivery slot: <b>tomorrow morning</b>, before the 3 PM prep block.</div>
@@ -763,6 +792,7 @@ ul.plain b{font-weight:700}
     <div class="note">Veg picks skip your <b>never-list</b> &mdash; no peppers, carrots, peas, mushrooms, tomatoes. <b>Broccoli and green beans</b> are the clean staples.</div>
   </div>
 </div>
+</div>
 
 </div>
 <script>
@@ -785,7 +815,7 @@ function toggleTheme(){
 function navOpen(){ document.getElementById('snav').classList.add('on'); document.getElementById('scrim').classList.add('on'); }
 function navClose(){ document.getElementById('snav').classList.remove('on'); document.getElementById('scrim').classList.remove('on'); }
 
-var VIEWS = ['home','full','full/targets','full/menu','full/weekends','full/oats','full/desserts','full/lifts','full/calendar','full/goals','full/checkin','week1','week1/week','week1/meals','week1/cards','week1/prep','week1/grocery'];
+var VIEWS = ['home','full','full/targets','full/menu','full/weekends','full/oats','full/desserts','full/lifts','full/calendar','full/goals','full/checkin','week1','week1/week','week1/meals','week1/cards','week1/prep','week1/walmart','week1/instacart'];
 function route(){
   var h = location.hash.replace('#','') || 'home';
   if(VIEWS.indexOf(h) < 0) h = 'home';
@@ -956,27 +986,6 @@ function copyStore(btn, cid, store){
   var txt = lines.join('\n').trim();
   var orig = btn.textContent;
   function ok(){ btn.textContent = 'Copied'; btn.classList.add('ok'); setTimeout(function(){btn.textContent=orig;btn.classList.remove('ok');},2000); }
-  try{ navigator.clipboard.writeText(txt).then(ok); }
-  catch(e){
-    var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();
-    try{document.execCommand('copy');ok();}catch(e2){}
-    document.body.removeChild(ta);
-  }
-}
-function copyList(btn){
-  var lines = [];
-  document.querySelectorAll('#v-week1-grocery .grocehead').forEach(function(h){
-    lines.push('');
-    lines.push(h.textContent.toUpperCase());
-    var ul = h.nextElementSibling;
-    ul.querySelectorAll('label').forEach(function(l){
-      var name = l.childNodes[0].textContent || l.textContent;
-      var qty = l.querySelector('.qty');
-      lines.push('- ' + name.trim() + (qty ? ' - ' + qty.textContent : ''));
-    });
-  });
-  var txt = lines.join('\n').trim();
-  function ok(){ btn.textContent = 'Copied'; btn.classList.add('ok'); setTimeout(function(){btn.textContent='Copy full list for Walmart+ / Instacart search';btn.classList.remove('ok');},2000); }
   try{ navigator.clipboard.writeText(txt).then(ok); }
   catch(e){
     var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();
