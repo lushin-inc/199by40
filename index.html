@@ -114,6 +114,7 @@ h1.page{font-size:19px;font-weight:600;color:var(--soft);margin:2px 0 26px}
 .g-cards{background:linear-gradient(155deg,#047857,#10b981)}
 .g-prep{background:linear-gradient(155deg,#059669,#34d399)}
 .g-grocery{background:linear-gradient(155deg,#0891b2,#22d3ee)}
+.g-meals{background:linear-gradient(155deg,#4d7c0f,#84cc16)}
 
 table{width:100%;border-collapse:collapse;font-size:14px}
 th{text-align:left;color:var(--faint);font-size:11px;text-transform:uppercase;letter-spacing:.07em;padding:6px 8px 8px 0;border-bottom:1px solid var(--line);font-weight:700}
@@ -147,6 +148,12 @@ ul.plain b{font-weight:700}
 .qty{color:var(--soft);font-size:13px;display:block}
 .copybtn{background:var(--panel2);border:1px solid var(--line);color:var(--soft);border-radius:10px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;margin-top:4px}
 .copybtn.ok{color:#059669;border-color:#059669}
+.sched{list-style:none}
+.sched li{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;align-items:baseline}
+.sched li:last-child{border-bottom:none}
+.sched .tm{color:var(--faint);font-weight:700;min-width:78px;font-variant-numeric:tabular-nums;font-size:12.5px;text-transform:lowercase}
+.sched .hi{color:#4d7c0f;font-weight:800}
+[data-theme="dark"] .sched .hi{color:#a3e635}
 .calgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
 .mon{background:var(--panel2);border-radius:14px;overflow:hidden}
 .mon .mh{color:#fff;font-size:13px;font-weight:800;letter-spacing:.04em;text-align:center;padding:8px 4px;text-transform:uppercase}
@@ -157,6 +164,18 @@ ul.plain b{font-weight:700}
 .mon .dim{color:var(--faint);opacity:.55}
 .mon .ev{color:#fff;font-weight:700}
 .mon .ev .el{display:block;font-size:7.5px;font-weight:700;line-height:1.15;letter-spacing:.01em;opacity:.95;margin-top:1px}
+.mon .dc.past{opacity:.32}
+.mon .dc.today{box-shadow:0 0 0 2px #0ea5e9 inset;font-weight:800}
+.ms{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.ms:last-child{border-bottom:none}
+.ms i{width:11px;height:11px;border-radius:4px;flex-shrink:0}
+.ms .nm{flex:1;font-size:14.5px;font-weight:700;line-height:1.25}
+.ms .nm .sub{font-weight:500}
+.ms .gw{text-align:right;font-size:12.5px;color:var(--soft);white-space:nowrap;line-height:1.3}
+.ms .gw b{color:var(--text);font-size:13.5px}
+.ms .dd{font-size:24px;font-weight:800;min-width:52px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.ms .dd small{display:block;font-size:9px;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:.08em}
+.ms.past-ms{opacity:.4}
 .callegend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:14px}
 .callegend span{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--soft)}
 .callegend i{width:12px;height:12px;border-radius:4px;display:inline-block}
@@ -199,6 +218,7 @@ ul.plain b{font-weight:700}
   <a class="sub" href="#full/checkin" data-h="full/checkin" onclick="navClose()">Monday check-in</a>
   <a href="#week1" class="c-wk hub" data-h="week1" onclick="navClose()">Week 1</a>
   <a class="sub" href="#week1/week" data-h="week1/week" onclick="navClose()">The week</a>
+  <a class="sub" href="#week1/meals" data-h="week1/meals" onclick="navClose()">Daily meal plan</a>
   <a class="sub" href="#week1/cards" data-h="week1/cards" onclick="navClose()">Lift cards</a>
   <a class="sub" href="#week1/prep" data-h="week1/prep" onclick="navClose()">Sunday prep</a>
   <a class="sub" href="#week1/grocery" data-h="week1/grocery" onclick="navClose()">Grocery list</a>
@@ -272,7 +292,7 @@ ul.plain b{font-weight:700}
       <tr><td>Dessert</td><td>Oreo Protein Pudding (5-min make)</td><td class="num">576</td><td class="num">65g</td></tr>
       <tr><td><b>Total</b></td><td></td><td class="num"><b>~2,100</b></td><td class="num"><b>~225g</b></td></tr>
     </table>
-    <div class="note">This is the menu, not a template. Zero weekday decisions. Protein lands at ~225g, so a light or imperfect family dinner still clears 185g &mdash; dinner is the only variable and it can't break the day.</div>
+    <div class="note"><b>This is the menu, not a template.</b> Zero weekday decisions. Protein lands at <b>~225g</b> &mdash; dinner is the only variable and it <b>can't break the day</b>.</div>
   </div>
   <div class="card">
     <div class="lead" style="margin-top:0">The one allowed change</div>
@@ -321,7 +341,7 @@ ul.plain b{font-weight:700}
       <tr><td>Oreo Lovers Protein Oatmeal &#9733;4</td><td>FDL p21</td><td class="num">468</td><td class="num">34g</td></tr>
       <tr><td>XL Protein Oatmeal Cream Pie &#9733;4</td><td>FDL p195</td><td class="num">280</td><td class="num">33g</td></tr>
     </table>
-    <div class="note">The weekday jar is one of these, five identical, made Sunday. Swap which one at a Monday check-in. Hot bowls belong to weekend mornings. Oatmeal Creme Pies counts as breakfast + dessert in one.</div>
+    <div class="note">The weekday jar: <b>one of these, five identical, made Sunday</b>. Swap at a Monday check-in. <b>Hot bowls = weekend mornings.</b> Oatmeal Creme Pies counts as <b>breakfast + dessert in one</b>.</div>
   </div>
   <div class="next"><a href="#full/desserts">Dessert rotation &#8250;</a></div>
 </div>
@@ -342,7 +362,7 @@ ul.plain b{font-weight:700}
       <tr><td>Cookie Butter Protein Pudding</td><td class="num">622</td><td class="num">77g</td></tr>
       <tr><td>Cinnamon Swirl Cake</td><td class="num">462</td><td class="num">64g</td></tr>
     </table>
-    <div class="note">Weekdays: the pudding, every night. Weekends: pick from the rest. Every day ends with dessert &mdash; it's how 185g happens without white-knuckling.</div>
+    <div class="note"><b>Weekdays: the pudding, every night.</b> Weekends: pick from the rest. <b>Every day ends with dessert</b> &mdash; it's how 185g happens without white-knuckling.</div>
   </div>
   <div class="next"><a href="#full/lifts">Lift split &#8250;</a></div>
 </div>
@@ -352,7 +372,7 @@ ul.plain b{font-weight:700}
   <a class="back" href="#full">&#8249; Full Playbook</a>
   <div class="phead g-lifts"><div class="who">Full Playbook</div><div class="what">Lift split &mdash; Month 1</div></div>
   <div class="card">
-    <div class="note" style="margin:0 0 12px">3 days per week, 35&ndash;40 minutes. Every exercise is one you rated 4 or 5. No leg day in Month 1 &mdash; habit before optimization.</div>
+    <div class="note" style="margin:0 0 12px"><b>3 days per week, 35&ndash;40 minutes.</b> Every exercise rated <b>4 or 5</b>. <b>No leg day in Month 1</b> &mdash; habit before optimization.</div>
     <div class="lift"><div class="t">Day A &mdash; Chest + Biceps</div>
       <table>
         <tr><td>Dumbbell Bench Press</td><td class="num">3 &times; 8&ndash;12</td></tr>
@@ -401,20 +421,24 @@ ul.plain b{font-weight:700}
   <a class="back" href="#full">&#8249; Full Playbook</a>
   <div class="phead g-calendar"><div class="who">Full Playbook</div><div class="what">Calendar &mdash; four phases</div></div>
   <div class="card">
+    <div id="milestones"></div>
+    <div class="note"><b>Lbs to go</b> uses your latest saved 7-day average from the check-in page.</div>
+  </div>
+  <div class="card">
     <div class="calgrid" id="keycal"></div>
     <div class="callegend" id="keyleg"></div>
   </div>
   <div class="card">
     <div class="day"><div class="d">Phase 1 &middot; Jul 18 &ndash; Aug 9</div><div class="t">Reset</div>
-      <div class="x">Logging back on daily. Lift split starts Mon Jul 20. Meal prep Sundays. PLL weekend Aug 1&ndash;2: protein first, no tracking guilt, back Monday. Target: ~205 by Aug 9.</div></div>
+      <div class="x"><b>Logging back on daily.</b> Lifts start <b>Mon Jul 20</b>. Meal prep Sundays. PLL Aug 1&ndash;2: protein first, back Monday. Target: <b>~205 by Aug 9</b>.</div></div>
     <div class="day"><div class="d">Phase 2 &middot; Aug 10 &ndash; Sep 29</div><div class="t">The cut engine</div>
-      <div class="x">School routine starts Aug 10 &mdash; lifts anchor to it. Seven clean weeks. Target: cross 199 by ~Sep 18, board the plane at 197&ndash;198.</div></div>
+      <div class="x">School starts <b>Aug 10</b> &mdash; lifts anchor to it. Seven clean weeks. Target: <b>cross 199 by ~Sep 18</b>, board the plane at <b>197&ndash;198</b>.</div></div>
     <div class="day"><div class="d">Sep 30 &ndash; Oct 3</div><div class="t">Jamaica</div>
-      <div class="x">Vacation fully. Protein at breakfast, walk a lot. Expect +3&ndash;4 lbs of water weight &mdash; it's not fat and it clears in a week.</div></div>
+      <div class="x"><b>Vacation fully.</b> Protein at breakfast, walk a lot. Expect <b>+3&ndash;4 lbs of water</b> &mdash; not fat, clears in a week.</div></div>
     <div class="day"><div class="d">Phase 3 &middot; Oct 4 &ndash; Oct 22</div><div class="t">Land the plane</div>
-      <div class="x">Back to the system. Jamaica bounce clears by ~Oct 10. Anniversary dinner Oct 12 is a planned meal. Walk into the Lushin Retreat Oct 22 under 199.</div></div>
+      <div class="x">Back to the system. Bounce clears by <b>~Oct 10</b>. Anniversary Oct 12 is a <b>planned meal</b>. Walk into the retreat Oct 22 <b>under 199</b>.</div></div>
     <div class="day"><div class="d">Oct 29 &middot; Nov 3</div><div class="t">Fall league + 40</div>
-      <div class="x">Week 1 of men's league with 14 weeks of lifting behind you. Turn 40 under 199 with the shoulders and arms you actually trained.</div></div>
+      <div class="x">League starts with <b>14 weeks of lifting</b> behind you. Turn 40 <b>under 199</b> with the shoulders and arms you actually trained.</div></div>
   </div>
   <div class="next"><a href="#full/goals">Weekly goals &#8250;</a></div>
 </div>
@@ -481,7 +505,7 @@ ul.plain b{font-weight:700}
       <tr data-phase="Final Stretch" data-start="2026-10-26"><td class="wkno">15</td><td class="num">Oct 26 &ndash; Nov 1</td><td>Final Stretch</td><td class="tgt">196.5</td><td>Lifts + league<span class="sub">Fall league week 1 on Oct 29.</span></td></tr>
       <tr data-phase="Final Stretch" data-start="2026-11-02"><td class="wkno">16</td><td class="num">Nov 2 &ndash; 8</td><td>Final Stretch</td><td class="tgt">&lt;199</td><td>Lifts + league<span class="sub">40th on Nov 3 &mdash; under 199, built, done.</span></td></tr>
     </table>
-    <div class="note">Targets are the Sunday 7-day average at ~1.2 lbs per week. Ahead of target changes nothing; two weeks behind = we adjust together at the Monday check-in. Your current week is highlighted.</div>
+    <div class="note">Targets = <b>Sunday 7-day average</b> at <b>~1.2 lbs per week</b>. Ahead changes nothing; <b>two weeks behind = we adjust together</b> at the Monday check-in. <b>Your current week is highlighted.</b></div>
   </div>
   <div class="next"><a href="#full/checkin">Monday check-in &#8250;</a></div>
 </div>
@@ -491,6 +515,7 @@ ul.plain b{font-weight:700}
   <div class="hubhead hh-wk"><div class="who">Dan</div><div class="what">Week 1</div></div>
   <div class="grid">
     <a class="gt g-week" href="#week1/week"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><div class="t">The week</div></a>
+    <a class="gt g-meals" href="#week1/meals"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><div class="t">Daily meal plan</div></a>
     <a class="gt g-cards" href="#week1/cards"><svg viewBox="0 0 24 24"><path d="M2 12h3M19 12h3M7 8v8M17 8v8M7 12h10"/></svg><div class="t">Lift cards</div></a>
     <a class="gt g-prep" href="#week1/prep"><svg viewBox="0 0 24 24"><path d="M4 12l5 5 11-11"/></svg><div class="t">Sunday prep</div></a>
     <a class="gt g-grocery" href="#week1/grocery"><svg viewBox="0 0 24 24"><path d="M4 6h2l2.5 11h9L20 9H7"/><circle cx="10" cy="20" r="1.5"/><circle cx="16" cy="20" r="1.5"/></svg><div class="t">Grocery list</div></a>
@@ -502,14 +527,110 @@ ul.plain b{font-weight:700}
   <a class="back" href="#week1">&#8249; Week 1</a>
   <div class="phead g-week"><div class="who">Week 1</div><div class="what">The week</div></div>
   <div class="card">
-    <div class="day"><div class="d">Sun Jul 19</div><div class="t">Prep day</div><div class="x">Groceries arrive. Cook the casserole (double batch), build 5 oat jars. ~75 minutes total.</div></div>
-    <div class="day"><div class="d">Mon Jul 20</div><div class="t">Day A &mdash; Chest + Biceps</div><div class="x">First lift. Optional 20 min elliptical after.</div></div>
+    <div class="day"><div class="d">Sun Jul 19</div><div class="t">Prep day</div><div class="x"><b>Casserole double batch</b> + <b>5 oat jars</b>. ~75 minutes total.</div></div>
+    <div class="day"><div class="d">Mon Jul 20</div><div class="t">Day A &mdash; Chest + Biceps</div><div class="x"><b>First lift.</b> Optional 20 min elliptical after.</div></div>
     <div class="day"><div class="d">Tue Jul 21</div><div class="t">Off or elliptical</div><div class="x">30&ndash;45 min if you want it. Walking counts too.</div></div>
     <div class="day"><div class="d">Wed Jul 22</div><div class="t">Day B &mdash; Shoulders + Triceps</div><div class="x">Optional elliptical after.</div></div>
     <div class="day"><div class="d">Thu Jul 23</div><div class="t">Off</div><div class="x">Full rest or a walk.</div></div>
     <div class="day"><div class="d">Fri Jul 24</div><div class="t">Day C &mdash; Arms + Pump</div><div class="x">Optional elliptical after.</div></div>
     <div class="day"><div class="d">Sat Jul 25</div><div class="t">Off or elliptical</div><div class="x">Griddle-slot breakfast if you want the waffles out.</div></div>
-    <div class="day"><div class="d">Mon Jul 27</div><div class="t">Check-in #1</div><div class="x">Send: last week's 7-day average &middot; 3/3 lifts &middot; protein average &middot; any flag. Then Day A.</div></div>
+    <div class="day"><div class="d">Mon Jul 27</div><div class="t">Check-in #1</div><div class="x">Send: <b>7-day average</b> &middot; <b>3/3 lifts</b> &middot; <b>protein average</b> &middot; any flag. Then <b>Day A</b>.</div></div>
+  </div>
+  <div class="next"><a href="#week1/cards">Lift cards &#8250;</a></div>
+</div>
+
+
+<!-- WEEK1 / MEALS -->
+<div id="v-week1-meals" class="view">
+  <a class="back" href="#week1">&#8249; Week 1</a>
+  <div class="phead g-meals"><div class="who">Week 1</div><div class="what">Daily meal plan</div></div>
+  <div class="card">
+    <ul class="plain">
+      <li><b>Kitchen closes at 8 PM.</b><span class="sub">Last bite is dessert by 7:45. Late eating is your known enemy &mdash; this is the hard stop.</span></li>
+      <li><b>The 3 PM Barebells is pre-lift fuel</b><span class="sub">Protein in the tank ~2 hours before you touch a dumbbell.</span></li>
+      <li><b>Dinner lands after the lift</b><span class="sub">Your biggest evening feeding follows training, not the couch.</span></li>
+      <li><b>VASA is 5 min from work, 15 from home</b><span class="sub">Lift on the way home &mdash; never a separate trip.</span></li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="day"><div class="d">Mon Jul 20 &middot; Day A</div>
+      <ul class="sched">
+        <li><span class="tm">6:50 am</span><span><b>Oat jar #1</b> before leaving home</span></li>
+        <li><span class="tm">12:00 pm</span><span><b>Casserole #1</b> at work</span></li>
+        <li><span class="tm">3:00 pm</span><span><b>Barebells</b> &mdash; pre-lift fuel</span></li>
+        <li><span class="tm">5:00 pm</span><span>Call Sam &mdash; office or the VASA lot</span></li>
+        <li><span class="tm">5:40 pm</span><span class="hi">Day A at VASA &mdash; Chest + Biceps</span></li>
+        <li><span class="tm">6:40 pm</span><span>Drive home</span></li>
+        <li><span class="tm">7:00 pm</span><span><b>Dinner</b> &mdash; protein first</span></li>
+        <li><span class="tm">7:40 pm</span><span><b>Oreo Protein Pudding</b></span></li>
+        <li><span class="tm">8:00 pm</span><span>Kitchen closed</span></li>
+      </ul>
+    </div>
+    <div class="day"><div class="d">Tue Jul 21 &middot; Off &middot; James game</div>
+      <ul class="sched">
+        <li><span class="tm">6:50 am</span><span><b>Oat jar #2</b></span></li>
+        <li><span class="tm">12:00 pm</span><span><b>Casserole #2</b></span></li>
+        <li><span class="tm">3:00 pm</span><span><b>Barebells</b></span></li>
+        <li><span class="tm">5:15 pm</span><span>Optional <b>30-min elliptical</b> at VASA &mdash; out by 5:50</span></li>
+        <li><span class="tm">6:10 pm</span><span class="hi">Early dinner + pudding together at home</span></li>
+        <li><span class="tm">6:55 pm</span><span>Leave for Westfield &mdash; ~35 min to Monon Trail Complex</span></li>
+        <li><span class="tm">7:45 pm</span><span>James &mdash; Empire Game 5</span></li>
+        <li><span class="tm">9:45 pm</span><span>Home. <b>Water only</b> &mdash; kitchen's been closed since 8.</span></li>
+      </ul>
+    </div>
+    <div class="day"><div class="d">Wed Jul 22 &middot; Day B</div>
+      <ul class="sched">
+        <li><span class="tm">6:50 am</span><span><b>Oat jar #3</b></span></li>
+        <li><span class="tm">12:00 pm</span><span><b>Casserole #3</b></span></li>
+        <li><span class="tm">3:00 pm</span><span><b>Barebells</b> &mdash; pre-lift fuel</span></li>
+        <li><span class="tm">5:15 pm</span><span class="hi">Day B at VASA &mdash; Shoulders + Triceps</span></li>
+        <li><span class="tm">6:15 pm</span><span>Home</span></li>
+        <li><span class="tm">6:45 pm</span><span><b>Dinner</b> &mdash; protein first</span></li>
+        <li><span class="tm">7:30 pm</span><span><b>Oreo Protein Pudding</b></span></li>
+        <li><span class="tm">8:00 pm</span><span>Kitchen closed</span></li>
+      </ul>
+    </div>
+    <div class="day"><div class="d">Thu Jul 23 &middot; Off</div>
+      <ul class="sched">
+        <li><span class="tm">6:50 am</span><span><b>Oat jar #4</b></span></li>
+        <li><span class="tm">12:00 pm</span><span><b>Casserole #4</b></span></li>
+        <li><span class="tm">3:00 pm</span><span><b>Barebells</b></span></li>
+        <li><span class="tm">5:30 pm</span><span>Home &mdash; optional <b>walk</b></span></li>
+        <li><span class="tm">6:30 pm</span><span><b>Dinner</b> &mdash; protein first</span></li>
+        <li><span class="tm">7:30 pm</span><span><b>Oreo Protein Pudding</b></span></li>
+        <li><span class="tm">8:00 pm</span><span>Kitchen closed</span></li>
+      </ul>
+    </div>
+    <div class="day"><div class="d">Fri Jul 24 &middot; Day C</div>
+      <ul class="sched">
+        <li><span class="tm">6:50 am</span><span><b>Oat jar #5</b></span></li>
+        <li><span class="tm">12:00 pm</span><span><b>Casserole #5</b></span></li>
+        <li><span class="tm">3:00 pm</span><span><b>Barebells</b> &mdash; pre-lift fuel</span></li>
+        <li><span class="tm">5:15 pm</span><span class="hi">Day C at VASA &mdash; Arms + Pump</span></li>
+        <li><span class="tm">6:15 pm</span><span>Home</span></li>
+        <li><span class="tm">6:45 pm</span><span><b>Dinner</b></span></li>
+        <li><span class="tm">7:45 pm</span><span><b>Oreo Protein Pudding</b></span></li>
+        <li><span class="tm">8:00 pm</span><span>Kitchen closed &mdash; weekend starts fed</span></li>
+      </ul>
+    </div>
+    <div class="day"><div class="d">Sat Jul 25</div>
+      <ul class="sched">
+        <li><span class="tm">~9:00 am</span><span><b>Griddle slot</b> &mdash; waffles or a hot oatmeal bowl</span></li>
+        <li><span class="tm">12:30 pm</span><span>Leftovers lunch</span></li>
+        <li><span class="tm">3:00 pm</span><span><b>Barebells</b></span></li>
+        <li><span class="tm">6:30 pm</span><span><b>Flex dinner</b> &mdash; family plans, whatever it is</span></li>
+        <li><span class="tm">8:00 pm</span><span><b>Fun dessert</b> &mdash; pick from the rotation. Kitchen closed by 8:30.</span></li>
+      </ul>
+    </div>
+    <div class="day"><div class="d">Sun Jul 26</div>
+      <ul class="sched">
+        <li><span class="tm">~9:00 am</span><span><b>Griddle slot</b> or hot oats</span></li>
+        <li><span class="tm">3:00 pm</span><span class="hi">Prep block &mdash; Week 2 casserole + 5 jars (~75 min)</span></li>
+        <li><span class="tm">6:30 pm</span><span><b>Dinner</b> &mdash; protein first</span></li>
+        <li><span class="tm">7:30 pm</span><span><b>Dessert</b> &mdash; kitchen closed at 8</span></li>
+        <li><span class="tm">evening</span><span>Numbers ready for <b>Check-in #1 tomorrow</b></span></li>
+      </ul>
+    </div>
   </div>
   <div class="next"><a href="#week1/cards">Lift cards &#8250;</a></div>
 </div>
@@ -519,7 +640,7 @@ ul.plain b{font-weight:700}
   <a class="back" href="#week1">&#8249; Week 1</a>
   <div class="phead g-cards"><div class="who">Week 1</div><div class="what">Lift cards &mdash; finding your weights</div></div>
   <div class="card">
-    <div class="note" style="margin:0 0 12px">This week's job is calibration, not effort. On every exercise: start lighter than you think, do a set of 10, and add weight until the last 2 reps are genuinely hard. That's your working weight &mdash; Hevy logs it for Week 2.</div>
+    <div class="note" style="margin:0 0 12px"><b>This week's job is calibration, not effort.</b> Start lighter than you think, do a set of 10, add weight until <b>the last 2 reps are genuinely hard</b>. That's your working weight &mdash; <b>Hevy logs it for Week 2</b>.</div>
     <div class="lift"><div class="t">Day A &mdash; Mon</div>
       <table>
         <tr><td>Dumbbell Bench Press</td><td class="num">3 &times; 10</td></tr>
@@ -566,7 +687,7 @@ ul.plain b{font-weight:700}
       <li><input type="checkbox" id="p4"><label for="p4">Barebells to the desk / bag<span class="qty">One per day, afternoon slot</span></label></li>
       <li><input type="checkbox" id="p5"><label for="p5">Log tomorrow's food tonight in MyFitnessPal<span class="qty">Pre-logging beats recall-logging &mdash; June's log died from recall</span></label></li>
     </ul>
-    <div class="note">The nightly Oreo Protein Pudding is a 5-minute fresh make &mdash; no batch needed. Weekend desserts get made on the day.</div>
+    <div class="note">The nightly pudding is a <b>5-minute fresh make</b> &mdash; no batch needed. Weekend desserts get made on the day.</div>
     <div class="flag">Oat jar ingredients use the standard RJF overnight-oats base &mdash; the book pages (25, 41, 52) aren't in this project's files. Check p25 before your first batch in case a mix-in differs.</div>
   </div>
   <div class="next"><a href="#week1/grocery">Grocery list &#8250;</a></div>
@@ -576,64 +697,70 @@ ul.plain b{font-weight:700}
 <div id="v-week1-grocery" class="view">
   <a class="back" href="#week1">&#8249; Week 1</a>
   <div class="phead g-grocery"><div class="who">Week 1</div><div class="what">Grocery list</div></div>
-  <div class="card">
-    <button class="copybtn" onclick="copyList(this)">Copy full list for Walmart+ / Instacart search</button>
 
-    <div class="grocehead">Meat &amp; protein</div>
-    <ul class="chk">
-      <li><input type="checkbox" id="g1a"><label for="g1a">Chicken breast<span class="qty">2 lb (casserole double batch uses ~1.5 lb)</span></label></li>
-      <li><input type="checkbox" id="g1b"><label for="g1b">Turkey bacon<span class="qty">1 pack</span></label></li>
-      <li><input type="checkbox" id="g1c"><label for="g1c">Extra chicken breast or thighs for dinners<span class="qty">~3 lb</span></label></li>
-      <li><input type="checkbox" id="g1d"><label for="g1d">93/7 lean ground beef or turkey<span class="qty">2 lb, dinner support</span></label></li>
-      <li><input type="checkbox" id="g1e"><label for="g1e">Liquid egg whites<span class="qty">2 cartons &mdash; waffles + weekend desserts + scrambles</span></label></li>
-    </ul>
-
-    <div class="grocehead">Dairy &amp; fridge</div>
-    <ul class="chk">
-      <li><input type="checkbox" id="g2a"><label for="g2a">Fat free cheddar, shredded<span class="qty">2 bags (12 oz total)</span></label></li>
-      <li><input type="checkbox" id="g2b"><label for="g2b">Fat free cream cheese<span class="qty">2 tubs</span></label></li>
-      <li><input type="checkbox" id="g2c"><label for="g2c">Nonfat Greek yogurt<span class="qty">32 oz tub &mdash; oat jars</span></label></li>
-      <li><input type="checkbox" id="g2d"><label for="g2d">Unsweetened almond milk<span class="qty">2 half-gallons &mdash; oats, pudding, waffle batter</span></label></li>
-      <li><input type="checkbox" id="g2e"><label for="g2e">Halo Top, vanilla or cookies &amp; cream<span class="qty">1 pint &mdash; weekend pizookie topper</span></label></li>
-    </ul>
-
+  <div class="card" id="gc-walmart">
+    <div class="lead" style="margin-top:0">Walmart+ order &mdash; pantry, frozen, packaged</div>
+    <div class="note" style="margin:8px 0 4px">Best prices on <b>shelf-stable and frozen</b>; Great Value covers most of it. Delivery slot: <b>tonight or early tomorrow</b>.</div>
+    <button class="copybtn" onclick="copyStore(this,'gc-walmart','Walmart+')">Copy Walmart+ list</button>
     <div class="grocehead">Pantry</div>
     <ul class="chk">
-      <li><input type="checkbox" id="g3a"><label for="g3a">Old fashioned rolled oats<span class="qty">1 large canister</span></label></li>
-      <li><input type="checkbox" id="g3b"><label for="g3b">Whey protein, vanilla<span class="qty">Big tub &mdash; oats, waffles, desserts all pull from it</span></label></li>
-      <li><input type="checkbox" id="g3c"><label for="g3c">Whey protein, chocolate<span class="qty">1 tub &mdash; pudding + chocolate desserts</span></label></li>
-      <li><input type="checkbox" id="g3d"><label for="g3d">Sugar-free pudding mix, vanilla + chocolate<span class="qty">4 boxes &mdash; oat jars + nightly pudding</span></label></li>
-      <li><input type="checkbox" id="g3e"><label for="g3e">Sugar-free chocolate chips<span class="qty">2 bags</span></label></li>
-      <li><input type="checkbox" id="g3f"><label for="g3f">Oreo Thins<span class="qty">2 packs &mdash; nightly pudding topper + jars</span></label></li>
-      <li><input type="checkbox" id="g3g"><label for="g3g">Brown sugar zero-calorie sweetener (Swerve or similar)<span class="qty">1 bag</span></label></li>
-      <li><input type="checkbox" id="g3h"><label for="g3h">Zero-calorie sweetener, granular<span class="qty">1 bag</span></label></li>
-      <li><input type="checkbox" id="g3i"><label for="g3i">Natural peanut butter<span class="qty">1 jar &mdash; weekend desserts</span></label></li>
-      <li><input type="checkbox" id="g3j"><label for="g3j">Coconut oil<span class="qty">Small jar</span></label></li>
-      <li><input type="checkbox" id="g3k"><label for="g3k">Coconut flour<span class="qty">Small bag &mdash; waffles</span></label></li>
-      <li><input type="checkbox" id="g3l"><label for="g3l">Unsweetened applesauce<span class="qty">1 jar &mdash; waffles</span></label></li>
-      <li><input type="checkbox" id="g3m"><label for="g3m">Canned pumpkin<span class="qty">1 can &mdash; weekend pizookie</span></label></li>
-      <li><input type="checkbox" id="g3n"><label for="g3n">Cream of chicken soup<span class="qty">1 can &mdash; casserole</span></label></li>
-      <li><input type="checkbox" id="g3o"><label for="g3o">Parmesan bread crumbs<span class="qty">1 container &mdash; casserole top</span></label></li>
-      <li><input type="checkbox" id="g3p"><label for="g3p">Baking soda + baking powder<span class="qty">Skip if stocked</span></label></li>
-      <li><input type="checkbox" id="g3q"><label for="g3q">White rice<span class="qty">Dinner support</span></label></li>
+      <li><input type="checkbox" id="w1"><label for="w1">Old fashioned rolled oats<span class="qty">1 large canister</span></label></li>
+      <li><input type="checkbox" id="w2"><label for="w2">Whey protein, vanilla<span class="qty">Big tub &mdash; oats, waffles, desserts</span></label></li>
+      <li><input type="checkbox" id="w3"><label for="w3">Whey protein, chocolate<span class="qty">1 tub &mdash; nightly pudding</span></label></li>
+      <li><input type="checkbox" id="w4"><label for="w4">Sugar-free pudding mix, vanilla + chocolate<span class="qty">4 boxes &mdash; jars + nightly pudding</span></label></li>
+      <li><input type="checkbox" id="w5"><label for="w5">Sugar-free chocolate chips<span class="qty">2 bags</span></label></li>
+      <li><input type="checkbox" id="w6"><label for="w6">Oreo Thins<span class="qty">2 packs &mdash; pudding topper + jars</span></label></li>
+      <li><input type="checkbox" id="w7"><label for="w7">Brown sugar zero-calorie sweetener (Swerve or similar)<span class="qty">1 bag</span></label></li>
+      <li><input type="checkbox" id="w8"><label for="w8">Zero-calorie sweetener, granular<span class="qty">1 bag</span></label></li>
+      <li><input type="checkbox" id="w9"><label for="w9">Natural peanut butter<span class="qty">1 jar</span></label></li>
+      <li><input type="checkbox" id="w10"><label for="w10">Coconut oil<span class="qty">Small jar</span></label></li>
+      <li><input type="checkbox" id="w11"><label for="w11">Coconut flour<span class="qty">Small bag &mdash; waffles</span></label></li>
+      <li><input type="checkbox" id="w12"><label for="w12">Unsweetened applesauce<span class="qty">1 jar &mdash; waffles</span></label></li>
+      <li><input type="checkbox" id="w13"><label for="w13">Canned pumpkin<span class="qty">1 can &mdash; weekend pizookie</span></label></li>
+      <li><input type="checkbox" id="w14"><label for="w14">Cream of chicken soup<span class="qty">1 can &mdash; casserole</span></label></li>
+      <li><input type="checkbox" id="w15"><label for="w15">Parmesan bread crumbs<span class="qty">1 container</span></label></li>
+      <li><input type="checkbox" id="w16"><label for="w16">Baking soda + baking powder<span class="qty">Skip if stocked</span></label></li>
+      <li><input type="checkbox" id="w17"><label for="w17">White rice<span class="qty">Dinner support</span></label></li>
     </ul>
-
-    <div class="grocehead">Produce &amp; frozen</div>
+    <div class="grocehead">Frozen &amp; fridge staples</div>
     <ul class="chk">
-      <li><input type="checkbox" id="g4a"><label for="g4a">Cauliflower florets<span class="qty">2 bags (~850g) &mdash; casserole</span></label></li>
-      <li><input type="checkbox" id="g4b"><label for="g4b">Green onions<span class="qty">1 bunch</span></label></li>
-      <li><input type="checkbox" id="g4c"><label for="g4c">White onion<span class="qty">1</span></label></li>
-      <li><input type="checkbox" id="g4d"><label for="g4d">Frozen broccoli<span class="qty">2 bags &mdash; dinner veg</span></label></li>
-      <li><input type="checkbox" id="g4e"><label for="g4e">Frozen green beans<span class="qty">1 bag &mdash; dinner veg</span></label></li>
-      <li><input type="checkbox" id="g4f"><label for="g4f">Bananas + berries<span class="qty">Week's worth</span></label></li>
+      <li><input type="checkbox" id="w18"><label for="w18">Frozen broccoli<span class="qty">2 bags</span></label></li>
+      <li><input type="checkbox" id="w19"><label for="w19">Frozen green beans<span class="qty">1 bag</span></label></li>
+      <li><input type="checkbox" id="w20"><label for="w20">Halo Top, vanilla or cookies &amp; cream<span class="qty">1 pint &mdash; pizookie topper</span></label></li>
+      <li><input type="checkbox" id="w21"><label for="w21">Liquid egg whites<span class="qty">2 cartons &mdash; Great Value is the cheap play</span></label></li>
+      <li><input type="checkbox" id="w22"><label for="w22">Turkey bacon<span class="qty">1 pack</span></label></li>
     </ul>
-
     <div class="grocehead">Snacks</div>
     <ul class="chk">
-      <li><input type="checkbox" id="g5a"><label for="g5a">Barebells protein bars<span class="qty">12-count &mdash; one per day covers the week with spares</span></label></li>
+      <li><input type="checkbox" id="w23"><label for="w23">Barebells protein bars<span class="qty">12-count &mdash; cheapest per-bar at Walmart</span></label></li>
     </ul>
+  </div>
 
-    <div class="note">Veg picks skip your never-list (no peppers, carrots, peas, mushrooms, tomatoes). Broccoli and green beans are the clean staples.</div>
+  <div class="card" id="gc-instacart">
+    <div class="lead" style="margin-top:0">Instacart order (Kroger) &mdash; fresh meat, dairy, produce</div>
+    <div class="note" style="margin:8px 0 4px">Better <b>fresh quality and fat-free dairy selection</b>; Kroger reliably stocks the fat-free cheeses. Delivery slot: <b>tomorrow morning</b>, before the 3 PM prep block.</div>
+    <button class="copybtn" onclick="copyStore(this,'gc-instacart','Instacart')">Copy Instacart list</button>
+    <div class="grocehead">Meat</div>
+    <ul class="chk">
+      <li><input type="checkbox" id="i1"><label for="i1">Chicken breast<span class="qty">2 lb &mdash; casserole double batch</span></label></li>
+      <li><input type="checkbox" id="i2"><label for="i2">Extra chicken breast or thighs<span class="qty">~3 lb &mdash; dinners</span></label></li>
+      <li><input type="checkbox" id="i3"><label for="i3">93/7 lean ground beef or turkey<span class="qty">2 lb &mdash; dinner support</span></label></li>
+    </ul>
+    <div class="grocehead">Dairy</div>
+    <ul class="chk">
+      <li><input type="checkbox" id="i4"><label for="i4">Fat free cheddar, shredded<span class="qty">2 bags (12 oz total)</span></label></li>
+      <li><input type="checkbox" id="i5"><label for="i5">Fat free cream cheese<span class="qty">2 tubs</span></label></li>
+      <li><input type="checkbox" id="i6"><label for="i6">Nonfat Greek yogurt<span class="qty">32 oz tub &mdash; oat jars</span></label></li>
+      <li><input type="checkbox" id="i7"><label for="i7">Unsweetened almond milk<span class="qty">2 half-gallons</span></label></li>
+    </ul>
+    <div class="grocehead">Produce</div>
+    <ul class="chk">
+      <li><input type="checkbox" id="i8"><label for="i8">Cauliflower florets<span class="qty">2 bags (~850g) &mdash; casserole</span></label></li>
+      <li><input type="checkbox" id="i9"><label for="i9">Green onions<span class="qty">1 bunch</span></label></li>
+      <li><input type="checkbox" id="i10"><label for="i10">White onion<span class="qty">1</span></label></li>
+      <li><input type="checkbox" id="i11"><label for="i11">Bananas + berries<span class="qty">Week's worth</span></label></li>
+    </ul>
+    <div class="note">Veg picks skip your <b>never-list</b> &mdash; no peppers, carrots, peas, mushrooms, tomatoes. <b>Broccoli and green beans</b> are the clean staples.</div>
   </div>
 </div>
 
@@ -658,7 +785,7 @@ function toggleTheme(){
 function navOpen(){ document.getElementById('snav').classList.add('on'); document.getElementById('scrim').classList.add('on'); }
 function navClose(){ document.getElementById('snav').classList.remove('on'); document.getElementById('scrim').classList.remove('on'); }
 
-var VIEWS = ['home','full','full/targets','full/menu','full/weekends','full/oats','full/desserts','full/lifts','full/calendar','full/goals','full/checkin','week1','week1/week','week1/cards','week1/prep','week1/grocery'];
+var VIEWS = ['home','full','full/targets','full/menu','full/weekends','full/oats','full/desserts','full/lifts','full/calendar','full/goals','full/checkin','week1','week1/week','week1/meals','week1/cards','week1/prep','week1/grocery'];
 function route(){
   var h = location.hash.replace('#','') || 'home';
   if(VIEWS.indexOf(h) < 0) h = 'home';
@@ -761,12 +888,16 @@ var CAL_MONTHS = [
     h += '</tr><tr>';
     for(var b=0;b<first.getDay();b++) h += '<td></td>';
     var col = first.getDay();
+    var tnow = new Date(); tnow.setHours(0,0,0,0);
     for(var day=1;day<=days;day++){
       var d = new Date(mo.y, mo.m, day);
       var e = evFor(d);
-      var dim = (d < rs || d > re) ? ' dim' : '';
-      if(e) h += '<td><div class="dc ev" style="background:'+e.color+'">'+day+'<span class="el">'+e.label+'</span></div></td>';
-      else  h += '<td><div class="dc'+dim+'">'+day+'</div></td>';
+      var cls = '';
+      if(d < rs || d > re) cls += ' dim';
+      if(d < tnow) cls += ' past';
+      if(d.getTime() === tnow.getTime()) cls += ' today';
+      if(e) h += '<td><div class="dc ev'+cls+'" style="background:'+e.color+'">'+day+'<span class="el">'+e.label+'</span></div></td>';
+      else  h += '<td><div class="dc'+cls+'">'+day+'</div></td>';
       col++;
       if(col===7 && day<days){ h += '</tr><tr>'; col=0; }
     }
@@ -778,6 +909,60 @@ var CAL_MONTHS = [
     leg.insertAdjacentHTML('beforeend', '<span><i style="background:'+e.color+'"></i>'+e.name+'</span>');
   });
 })();
+// Milestone countdowns. Goal = weekly-table target at that date. Add rows here as needed.
+var MILESTONES = [
+  {date:'2026-08-01', name:'PLL in OH',            goal:207.4, color:'#2563eb'},
+  {date:'2026-08-10', name:'First Day of School',  goal:206.2, color:'#059669'},
+  {date:'2026-09-30', name:'Jamaica \u2014 board the plane', goal:198.0, color:'#ea770b'},
+  {date:'2026-10-12', name:'Anniversary',          goal:198.5, color:'#db2777'},
+  {date:'2026-10-22', name:'Lushin Retreat',       goal:197.0, color:'#dc2626'},
+  {date:'2026-10-29', name:'Fall League \u2014 Week 1', goal:196.5, color:'#7c3aed'},
+  {date:'2026-11-03', name:'40th Birthday',        goal:196.5, color:'#0d9488'}
+];
+(function(){
+  var host = document.getElementById('milestones');
+  if(!host) return;
+  var cur = 209.8;
+  try{ var s = localStorage.getItem('rt199_w'); if(s) cur = parseFloat(s); }catch(e){}
+  var tnow = new Date(); tnow.setHours(0,0,0,0);
+  MILESTONES.forEach(function(m){
+    var d = new Date(m.date + 'T00:00:00');
+    var days = Math.round((d - tnow) / 86400000);
+    var when = (d.getMonth()+1) + '/' + d.getDate();
+    var togo = Math.max(0, cur - m.goal).toFixed(1);
+    var row;
+    if(days < 0){
+      row = '<div class="ms past-ms"><i style="background:'+m.color+'"></i><div class="nm">'+m.name+'<span class="sub" style="margin-top:0">'+when+'</span></div><div class="gw">goal '+m.goal.toFixed(1)+'</div><div class="dd">&#10003;<small>done</small></div></div>';
+    } else {
+      var dtxt = days===0 ? 'today' : (days===1 ? 'day' : 'days');
+      row = '<div class="ms"><i style="background:'+m.color+'"></i><div class="nm">'+m.name+'<span class="sub" style="margin-top:0">'+when+'</span></div><div class="gw">goal <b>'+m.goal.toFixed(1)+'</b><br>'+togo+' to go</div><div class="dd">'+(days===0?'&#9733;':days)+'<small>'+dtxt+'</small></div></div>';
+    }
+    host.insertAdjacentHTML('beforeend', row);
+  });
+})();
+function copyStore(btn, cid, store){
+  var lines = [store.toUpperCase() + ' ORDER'];
+  var card = document.getElementById(cid);
+  card.querySelectorAll('.grocehead').forEach(function(h){
+    lines.push('');
+    lines.push(h.textContent.toUpperCase());
+    var ul = h.nextElementSibling;
+    ul.querySelectorAll('label').forEach(function(l){
+      var name = l.childNodes[0].textContent || l.textContent;
+      var qty = l.querySelector('.qty');
+      lines.push('- ' + name.trim() + (qty ? ' - ' + qty.textContent : ''));
+    });
+  });
+  var txt = lines.join('\n').trim();
+  var orig = btn.textContent;
+  function ok(){ btn.textContent = 'Copied'; btn.classList.add('ok'); setTimeout(function(){btn.textContent=orig;btn.classList.remove('ok');},2000); }
+  try{ navigator.clipboard.writeText(txt).then(ok); }
+  catch(e){
+    var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');ok();}catch(e2){}
+    document.body.removeChild(ta);
+  }
+}
 function copyList(btn){
   var lines = [];
   document.querySelectorAll('#v-week1-grocery .grocehead').forEach(function(h){
